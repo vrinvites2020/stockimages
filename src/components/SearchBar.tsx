@@ -34,11 +34,11 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         <input
           type="text"
           placeholder="Search assets..."
-          className="input-field pl-10"
+          className="input-field pl-12 text-foreground placeholder-muted"
           onChange={(e) => onSearch(e.target.value)}
         />
         <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+          className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -52,9 +52,9 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         </svg>
       </div>
       
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <select
-          className="input-field max-w-[200px]"
+          className="input-field max-w-[200px] text-foreground"
           value={category}
           onChange={handleCategoryChange}
         >
@@ -66,7 +66,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         </select>
 
         <select
-          className="input-field max-w-[200px]"
+          className="input-field max-w-[200px] text-foreground"
           value={language}
           onChange={handleLanguageChange}
         >
@@ -78,7 +78,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         </select>
 
         <select
-          className="input-field max-w-[200px]"
+          className="input-field max-w-[200px] text-foreground"
           value={sortBy}
           onChange={handleSortChange}
         >

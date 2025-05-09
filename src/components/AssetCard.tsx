@@ -67,33 +67,34 @@ export default function AssetCard({ id, title, category, language, price, imageU
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-      <div className="card group cursor-pointer" onClick={() => setShowModal(true)}>
+      <div className="card hover-card group cursor-pointer" onClick={() => setShowModal(true)}>
         <div className="relative aspect-video overflow-hidden">
           <Image
             src={imageUrl}
             alt={title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-200"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         <div className="p-4">
-          <h3 className="font-semibold text-lg mb-1 truncate">{title}</h3>
+          <h3 className="font-semibold text-lg mb-2 truncate text-foreground">{title}</h3>
           <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <span className="text-sm text-gray-500">{language}</span>
-              <div className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+            <div className="space-y-2">
+              <span className="text-sm text-muted">{language}</span>
+              <div className="text-xs bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-medium">
                 {category}
               </div>
             </div>
-            <div className="flex flex-col items-end">
-              <span className="text-sm font-medium">₹{price.toLocaleString('en-IN')}</span>
+            <div className="flex flex-col items-end gap-2">
+              <span className="text-lg font-bold text-foreground">₹{price.toLocaleString('en-IN')}</span>
               <button 
                 onClick={(e) => {
                   e.stopPropagation()
                   initializePayment()
                 }}
                 disabled={loading}
-                className={`btn-primary text-sm mt-1 ${
+                className={`btn-primary text-sm ${
                   loading ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >

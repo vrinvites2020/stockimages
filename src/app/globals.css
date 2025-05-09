@@ -3,25 +3,55 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
+  --primary: 79, 70, 229;
+  --primary-dark: 67, 56, 202;
+  --secondary: 236, 72, 153;
+  --accent: 245, 158, 11;
+  --background: 249, 250, 251;
+  --foreground: 17, 24, 39;
+  --muted: 107, 114, 128;
+  --card: 255, 255, 255;
+  --card-foreground: 17, 24, 39;
+  --border: 229, 231, 235;
+  --input: 229, 231, 235;
+  --ring: 79, 70, 229;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
 }
 
 @layer components {
   .card {
-    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden;
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100;
   }
   
   .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200;
+    @apply px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md;
   }
   
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-600;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-indigo-600 to-pink-600;
+  }
+
+  .hover-card {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
   }
 } 

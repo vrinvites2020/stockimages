@@ -151,43 +151,49 @@ export default function Home() {
 
   // The grid should always show filteredAssets
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-background py-20">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-12 animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
               Discover Creative Assets
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted max-w-2xl mx-auto">
               Find high-quality templates, icons, and graphics for your next project
             </p>
           </div>
-          <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+          <div className="animate-slide-up">
+            <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+          </div>
         </div>
       </section>
 
       {/* Carousel Section */}
-      <section className="container mx-auto px-4 py-4">
-        <Carousel
-          assets={mockAssets}
-          onCategorySelect={handleCategorySelect}
-        />
+      <section className="container mx-auto px-4 py-8">
+        <div className="animate-slide-up">
+          <Carousel
+            assets={mockAssets}
+            onCategorySelect={handleCategorySelect}
+          />
+        </div>
       </section>
 
       {/* Assets Grid */}
       <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredAssets.map(asset => (
-            <AssetCard
-              key={asset.id}
-              id={asset.id}
-              title={asset.title}
-              category={asset.category}
-              language={asset.language}
-              price={asset.price}
-              imageUrl={asset.imageUrl}
-            />
+            <div key={asset.id} className="animate-fade-in">
+              <AssetCard
+                id={asset.id}
+                title={asset.title}
+                category={asset.category}
+                language={asset.language}
+                price={asset.price}
+                imageUrl={asset.imageUrl}
+              />
+            </div>
           ))}
         </div>
       </section>
