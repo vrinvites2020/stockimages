@@ -4,6 +4,7 @@ import { useState } from 'react'
 import SearchBar from '@/components/SearchBar'
 import AssetCard from '@/components/AssetCard'
 import Carousel from '@/components/Carousel'
+import { DownloadCard } from "@/components/DownloadCard";
 
 // Mock data for demonstration
 const mockAssets = [
@@ -197,6 +198,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <DownloadCard />
     </div>
   )
 } 
