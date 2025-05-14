@@ -152,7 +152,7 @@ export default function Home() {
 
   // The grid should always show filteredAssets
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-background py-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Assets Grid */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-12 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredAssets.map(asset => (
             <div key={asset.id} className="animate-fade-in">
