@@ -16,6 +16,58 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
+
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [angle, setAngle] = useState(0);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+
+  useEffect(() => {
+    if (hoveredIdx === null) {
+      const interval = setInterval(() => {
+        setAngle((prev) => prev + 45); // Rotate by 45 degrees every interval
+      }, 3000); // Adjust the interval as needed
+      return () => clearInterval(interval);
+    }
+  }, [hoveredIdx]);
+
+  // const radius = 380; // Adjust the radius for the 3D effect
+  // const cardWidth = 200; // Width of each card
+  // const cardHeight = 182; // Height of each card
+
+  // Responsive card size and radius
+  const [dimensions, setDimensions] = useState({
+    cardWidth: 200,
+    cardHeight: 182,
+    radius: 380,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 500) {
+        setDimensions({ cardWidth: 120, cardHeight: 110, radius: 170 });
+      } else if (width < 768) {
+        setDimensions({ cardWidth: 150, cardHeight: 135, radius: 220 });
+      } else if (width < 1024) {
+        setDimensions({ cardWidth: 170, cardHeight: 155, radius: 300 });
+      } else {
+        setDimensions({ cardWidth: 200, cardHeight: 182, radius: 380 });
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // ...existing useEffects and logic...
+
+
+
+
+
+
   // Always show one asset per category
   const categories = useMemo(() => {
     return Array.from(new Set(assets.map(a => a.category)));
@@ -30,7 +82,6 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
   // Scrollable carousel logic
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [scrolling, setScrolling] = useState(true);
 
   // Auto-scroll logic with infinite loop
@@ -40,7 +91,7 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
       const cardWidth = 296; // width(264) + gap(32)
       let animationFrameId: number;
       let lastTimestamp: number;
-      
+
       const animate = (timestamp: number) => {
         if (!lastTimestamp) lastTimestamp = timestamp;
         const delta = timestamp - lastTimestamp;
@@ -75,7 +126,7 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
       const scrollContainer = scrollRef.current;
       const currentScroll = scrollContainer.scrollLeft;
       const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      
+
       if (currentScroll >= maxScroll - 1) {
         scrollContainer.scrollLeft = 0;
       } else if (currentScroll <= 0) {
@@ -156,15 +207,26 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full mb-8">
-      <div className="relative w-full max-w-5xl flex items-center justify-center rounded-3xl bg-gradient-to-br from-blue-50/80 to-white shadow-2xl py-8 px-2 overflow-hidden">
+    <div className="flex flex-col items-center w-full mb-8 bg-black">
+      <div className="relative flex justify-center items-center w-full h-[400px] perspective-1000">
+
+        {/* Spotlight overlay */}
         <div
-          ref={scrollRef}
-          className="flex gap-8 overflow-x-auto scrollbar-hide px-16 py-4 snap-none cursor-grab relative"
-          style={{ 
-            scrollBehavior: 'auto',
-            minHeight: '22rem',
-            WebkitOverflowScrolling: 'touch'
+          className="pointer-events-none absolute inset-0 z-10"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 80%)',
+            transition: 'background 0.4s',
+          }}
+        />
+
+
+        <div
+          ref={carouselRef}
+          className="absolute w-full h-full flex items-center justify-center"
+          style={{
+            transform: `rotateY(${angle}deg)`,
+            transformStyle: 'preserve-3d',
+            transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
           onScroll={handleScroll}
           onMouseDown={handleMouseDown}
@@ -178,30 +240,34 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
         >
-          {displayAssets.map((asset, idx) => {
+          {assets.map((asset, idx) => {
+
+            const rotation = (360 / assets.length) * idx;
             const isSelected = selectedIdx === idx;
             const isHovered = hoveredIdx === idx;
             return (
               <div
-                key={`${asset.id}-${idx}`}
-                className={`flex-shrink-0 w-64 h-80 bg-white rounded-2xl shadow-xl border-2 transition-all duration-500 cursor-pointer relative
-                  ${isSelected ? 'ring-2 ring-blue-500 border-blue-500 scale-105 shadow-2xl' : 'border-transparent'}
-                  ${isHovered ? 'shadow-2xl' : ''}
-                `}
+                key={asset.id}
+                className={`absolute ${isSelected ? 'ring-2 ring-blue-500 border-blue-500 scale-105 shadow-2xl' : 'border-transparent'}
+                  ${isHovered ? 'shadow-2xl' : ''} `}
+
+                style={{
+                  width: `${dimensions.cardWidth}px`,
+                  height: `${dimensions.cardHeight}px`,
+                  transform: `rotateY(${rotation}deg) translateZ(${dimensions.radius + 50}px)`,
+                  transformStyle: 'preserve-3d',
+                }}
                 onClick={(e) => handleCardClick(idx, asset.category, e)}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                style={{ 
-                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                  transform: isHovered ? 'scale(1.02)' : 'scale(1)'
-                }}
+
               >
                 <div className="relative overflow-hidden rounded-t-2xl">
                   <Image
                     src={asset.imageUrl}
                     alt={asset.title}
-                    width={256}
-                    height={192}
+                    width={dimensions.cardWidth}
+                    height={dimensions.cardHeight}
                     className="w-full h-48 object-cover rounded-t-2xl transition-transform duration-700 ease-out"
                     style={{
                       transform: isHovered ? 'scale(1.1)' : 'scale(1)',
@@ -212,7 +278,7 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
                   />
                 </div>
                 <div className="p-4 text-center">
-                  <div className="font-bold text-lg truncate" title={asset.title}>{asset.title}</div>
+                  <div className="font-bold text-lg truncate text-gray-500" title={asset.title}>{asset.title}</div>
                   <div className="text-sm text-gray-500 mb-2">{asset.category}</div>
                   <div className="text-xs text-gray-400">{asset.language} • ₹{asset.price}</div>
                 </div>
@@ -230,7 +296,17 @@ const Carousel: React.FC<CarouselProps> = ({ assets, onCategorySelect }) => {
         .animate-ripple {
           animation: ripple 0.5s linear;
         }
-      `}</style>
+          .perspective-1000 {
+          perspective: 1000px;
+      }
+          @media (max-width: 500px) {
+          .perspective-1000 { height: 220px !important; }
+        }
+        @media (max-width: 768px) {
+          .perspective-1000 { height: 320px !important; }
+        }
+      `}
+      </style>
     </div>
   );
 };
