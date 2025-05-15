@@ -9,6 +9,15 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
   const [category, setCategory] = useState('all')
   const [language, setLanguage] = useState('all')
   const [sortBy, setSortBy] = useState('newest')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<string[] | null>(null)
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    onSearch(query)
+    // Simulating null results for now
+    setSearchResults(null)
+  }
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCategory = e.target.value
@@ -35,7 +44,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
           type="text"
           placeholder="Search assets..."
           className="input-field pl-12 text-foreground placeholder-muted"
-          onChange={(e) => onSearch(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
         />
         <svg
           className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted"
@@ -59,10 +68,9 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
           onChange={handleCategoryChange}
         >
           <option value="all">All Categories</option>
-          <option value="presets">Presets</option>
-          <option value="templates">Templates</option>
-          <option value="courses">Courses</option>
-          <option value="educational">Educational</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Engagement">Engagement</option>
+          <option value="Birthday">Birthday</option>
         </select>
 
         <select
@@ -75,6 +83,9 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
           <option value="Telugu">Telugu</option>
           <option value="Hindi">Hindi</option>
           <option value="Tamil">Tamil</option>
+          <option value="Kannada">Kannada</option>
+          <option value="Malayalam">Malayalam</option>
+          <option value="Marathi">Marathi</option>
         </select>
 
         <select
@@ -86,6 +97,13 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
           <option value="popular">Most Popular</option>
         </select>
       </div>
+
+      {searchQuery && searchResults === null && (
+        <div className="text-center py-8 text-muted">
+          <h3 className="text-xl font-semibold">Coming Soon</h3>
+          <p className="mt-2">Search functionality will be available shortly.</p>
+        </div>
+      )}
     </div>
   )
 } 

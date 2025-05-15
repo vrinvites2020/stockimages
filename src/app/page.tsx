@@ -23,86 +23,6 @@ const mockAssets = [
     language: 'English',
     price: 1699,
     imageUrl: 'https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 3,
-    title: 'Ethnic Fashion Photography',
-    category: 'Fashion',
-    language: 'Hindi',
-    price: 2099,
-    imageUrl: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 4,
-    title: 'Landscape Photography Guide',
-    category: 'Nature',
-    language: 'Tamil',
-    price: 4199,
-    imageUrl: 'https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 5,
-    title: 'Studio Lighting Setup Guide',
-    category: 'Studio',
-    language: 'English',
-    price: 2999,
-    imageUrl: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 6,
-    title: 'Cultural Event Photography',
-    category: 'Events',
-    language: 'Telugu',
-    price: 3799,
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt5W8iHsslLvVY7tVgd8olmDe8df1-ymRDzQ&s',
-  },
-  {
-    id: 7,
-    title: 'Product Photography Guide',
-    category: 'Commercial',
-    language: 'Hindi',
-    price: 2399,
-    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 8,
-    title: 'Street Photography Techniques',
-    category: 'Street',
-    language: 'Tamil',
-    price: 3399,
-    imageUrl: 'https://images.unsplash.com/photo-1520106212299-d99c443e4568?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 9,
-    title: 'Traditional Ceremony Photography',
-    category: 'Cultural',
-    language: 'Telugu',
-    price: 4599,
-    imageUrl: 'https://images.unsplash.com/photo-1587271636175-90d58cdad458?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aW5kaWFuJTIwd2VkZGluZ3xlbnwwfHwwfHx8MA%3D%3D',
-  },
-  {
-    id: 10,
-    title: 'Black & White Portrait Guide',
-    category: 'Portrait',
-    language: 'English',
-    price: 1699,
-    imageUrl: 'https://images.unsplash.com/photo-1508186225823-0963cf9ab0de?w=800&auto=format&fit=crop&q=60',
-  },
-  {
-    id: 11,
-    title: 'Fashion Photography Templates',
-    category: 'Fashion',
-    language: 'Hindi',
-    price: 1299,
-    imageUrl: 'https://images.pexels.com/photos/1375736/pexels-photo-1375736.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 12,
-    title: 'Food Photography Masterclass',
-    category: 'Commercial',
-    language: 'Tamil',
-    price: 4199,
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=60',
   }
 ]
 
@@ -152,7 +72,7 @@ export default function Home() {
 
   // The grid should always show filteredAssets
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-background py-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -175,7 +95,6 @@ export default function Home() {
       <section className="container mx-auto px-4 py-8">
         <div className="animate-slide-up">
           <Carousel
-            assets={mockAssets}
             onCategorySelect={handleCategorySelect}
           />
         </div>
