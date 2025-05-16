@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import CarouselCard from './CarouselCard';
-import { assets } from '../data/assets';
+import { carouselCardsData } from '../data/carouselcardsdata';
 
 interface CarouselProps {
   onCategorySelect: (category: string) => void;
@@ -9,7 +9,7 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
   // Show all assets, not just one per category
   const displayAssets = useMemo(() => {
-    return [...assets.slice(-2), ...assets, ...assets.slice(0, 2)];
+    return [...carouselCardsData.slice(-2), ...carouselCardsData, ...carouselCardsData.slice(0, 2)];
   }, []);
 
   // Scrollable carousel logic
@@ -143,11 +143,11 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full mb-8">
-      <div className="relative w-full max-w-5xl flex items-center justify-center rounded-3xl bg-gradient-to-br from-blue-50/80 to-white shadow-2xl py-8 px-2 overflow-hidden">
+    <section className="w-full bg-gradient-to-b from-indigo-50 via-white to-white py-8">
+      <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl bg-gradient-to-br from-blue-50/80 to-white shadow-2xl py-8 overflow-hidden">
         <div
           ref={scrollRef}
-          className="flex gap-8 overflow-x-auto scrollbar-hide px-16 py-4 snap-none cursor-grab relative"
+          className="flex gap-6 overflow-x-auto scrollbar-hide snap-none cursor-grab relative"
           style={{ 
             scrollBehavior: 'auto',
             minHeight: '22rem',
@@ -168,7 +168,6 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
           {displayAssets.map((asset, idx) => (
             <CarouselCard
               key={`${asset.imageUrl}-${idx}`}
-              title={asset.title}
               category={asset.category}
               imageUrl={asset.imageUrl}
               isSelected={selectedIdx === idx}
@@ -190,7 +189,7 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
           animation: ripple 0.5s linear;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

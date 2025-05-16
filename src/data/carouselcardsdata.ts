@@ -1,11 +1,11 @@
-export interface Asset {
+export interface CarouselCard {
   id: number;
   title: string;
   category: string;
   imageUrl: string;
 }
 
-export const assets: Asset[] = [
+export const carouselCardsData: CarouselCard[] = [
   {
     id: 1,
     title: "Wedding Celebration",

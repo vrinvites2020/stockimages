@@ -37,7 +37,7 @@ export default function SubscriptionCheckout({
       }
 
       const options: Razorpay.Options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || '',
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY || '',
         name: 'Stock Image Access',
         description: 'Yearly Subscription',
         handler: function (response: Razorpay.PaymentResponse) {

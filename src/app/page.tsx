@@ -4,34 +4,33 @@ import { useState } from 'react'
 import SearchBar from '@/components/SearchBar'
 import AssetCard from '@/components/AssetCard'
 import Carousel from '@/components/Carousel'
-import { DownloadCard } from "@/components/DownloadCard";
+import { weddingInvitationDetails } from '@/data/constant'
+import HeroSection from '@/components/HeroSection';
 
-// Mock data for demonstration
-const mockAssets = [
-  {
-    id: 1,
-    title: 'Traditional Wedding Photography Guide',
-    category: 'Wedding',
-    language: 'Telugu',
-    price: 2499,
-    imageUrl: 'https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=',
-  },
-  {
-    id: 2,
-    title: 'Portrait Photography Masterclass',
-    category: 'Portrait',
-    language: 'English',
-    price: 1699,
-    imageUrl: 'https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  }
-]
+type Asset = {
+  id: number;
+  title: string;
+  category: string;
+  language: string;
+  price: number;
+  imageUrl: string;
+}
+
+const assets: Asset[] = weddingInvitationDetails.map(item => ({
+  id: item.id,
+  title: item.title,
+  category: item.category,
+  language: item.language,
+  price: item.price,
+  imageUrl: item.imageUrl
+}))
 
 export default function Home() {
-  const [filteredAssets, setFilteredAssets] = useState(mockAssets)
+  const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets)
 
   // Helper to filter assets by category
-  const filterAssetsByCategory = (category: string, assets = mockAssets) => {
-    return category === 'all' ? assets : assets.filter(asset => asset.category === category)
+  const filterAssetsByCategory = (category: string, assetsList: Asset[] = assets) => {
+    return category === 'all' ? assetsList : assetsList.filter(asset => asset.category === category)
   }
 
   // When a category is selected from the carousel or tabs
@@ -40,14 +39,14 @@ export default function Home() {
   }
 
   const handleSearch = (query: string) => {
-    const filtered = mockAssets.filter(asset => 
+    const filtered = assets.filter(asset => 
       asset.title.toLowerCase().includes(query.toLowerCase())
     )
     setFilteredAssets(filtered)
   }
 
   const handleFilterChange = (category: string, language: string, sortBy: string) => {
-    let filtered = [...mockAssets]
+    let filtered: Asset[] = [...assets]
     if (category !== 'all') {
       filtered = filtered.filter(asset => 
         asset.category.toLowerCase() === category.toLowerCase()
@@ -72,37 +71,23 @@ export default function Home() {
 
   // The grid should always show filteredAssets
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-background py-20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-              Discover Creative Assets
-            </h1>
-            <p className="text-xl text-muted max-w-2xl mx-auto">
-              Find high-quality templates, icons, and graphics for your next project
-            </p>
-          </div>
-          <div className="animate-slide-up">
-            <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-[#f5f6fa]">
+      {/* New Hero Section */}
+      <HeroSection />
 
       {/* Carousel Section */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="max-w-7xl w-full mx-auto px-4 py-8">
         <div className="animate-slide-up">
-          <Carousel
-            onCategorySelect={handleCategorySelect}
-          />
+          <Carousel onCategorySelect={handleCategorySelect} />
         </div>
       </section>
 
-      {/* Assets Grid */}
-      <section className="container mx-auto px-4 py-12 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Search Bar and Assets Grid */}
+      <section className="max-w-7xl w-full mx-auto px-4 py-12">
+        <div className="w-full animate-slide-up mb-8">
+          <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredAssets.map(asset => (
             <div key={asset.id} className="animate-fade-in">
               <AssetCard
@@ -117,8 +102,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <DownloadCard />
     </div>
   )
 } 

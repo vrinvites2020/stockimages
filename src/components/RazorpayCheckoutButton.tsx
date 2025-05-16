@@ -5,9 +5,10 @@ interface RazorpayCheckoutButtonProps {
   amount: number; // in rupees
   assetId: string;
   title: string;
+  onPaymentSuccess?: () => void;
 }
 
-export default function RazorpayCheckoutButton({ amount, assetId, title }: RazorpayCheckoutButtonProps) {
+export default function RazorpayCheckoutButton({ amount, assetId, title, onPaymentSuccess }: RazorpayCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   const handlePayment = async () => {
@@ -27,14 +28,15 @@ export default function RazorpayCheckoutButton({ amount, assetId, title }: Razor
 
       // 2. Open Razorpay checkout
       const options = {
-        key: 'rzp_test_AZXUgY3fSW20EV', // Use env var in production!
+        // Store your Razorpay key in .env.local as NEXT_PUBLIC_RAZORPAY_KEY
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
         amount: data.amount, // in paise
         currency: data.currency,
-        name: 'Your Project Name',
+        name: 'Wedding Photography Assets',
         description: title,
         order_id: data.id,
         handler: function () {
-          alert('Payment initiated! You will receive access once the payment is confirmed.');
+          if (onPaymentSuccess) onPaymentSuccess();
         },
         prefill: {
           name: 'User Name',
