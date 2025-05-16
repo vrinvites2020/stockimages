@@ -38,7 +38,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6 text-white">
+    <div className="w-full max-w-6xl mx-auto space-y-4 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6 text-white">
       <div className="relative">
         <input
           type="text"

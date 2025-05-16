@@ -87,7 +87,7 @@ export default function Home() {
         <div className="w-full animate-slide-up mb-8">
           <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredAssets.map(asset => (
             <div key={asset.id} className="animate-fade-in">
               <AssetCard

@@ -94,7 +94,7 @@ export default function AssetCard({ id, title, category, language, price, imageU
                 initializePayment()
               }}
               disabled={loading}
-              className={`btn-primary text-sm px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 text-white font-semibold shadow-lg hover:from-pink-500 hover:to-indigo-500 transition-all duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`btn-primary text-sm px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 transition-all duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {loading ? 'Processing...' : 'Buy Now'}
             </button>
