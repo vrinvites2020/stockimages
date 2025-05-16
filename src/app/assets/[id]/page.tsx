@@ -34,9 +34,9 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#f3e8ff] to-[#e0e7ff]">
+    <div className="min-h-screen bg-gradient-to-br from-[#18122B] via-[#1E1B3A] to-[#232946] text-white">
       {/* Top Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b h-16 shadow-sm">
+      <nav className="sticky top-0 z-50 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] backdrop-blur-md border-b border-purple-900/40 h-16 shadow-2xl">
         <div className="container mx-auto px-4 py-3 h-16 flex items-center">
           <div className="flex items-center justify-between w-full">
             <Link href="/" className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors">
@@ -63,7 +63,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Media */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative group">
+            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 overflow-hidden relative group">
               {details.imageUrl && details.videoUrl && (
                 <div className="relative aspect-video group cursor-pointer">
                   <Image
@@ -104,7 +104,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
 
           {/* Right Column - Details */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-xl p-6 sticky top-24 flex flex-col gap-6">
+            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6 sticky top-24 flex flex-col gap-6">
               <h1 className="text-3xl font-extrabold mb-2 text-indigo-700 leading-tight">{details.title}</h1>
               <div className="flex flex-wrap items-center gap-3 mb-2">
                 {details.language && (
@@ -148,29 +148,29 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
         </div>
 
         {/* Description Section */}
-        <div className="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <div className="mt-8 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6">
           {details.summary && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 text-indigo-700">Description</h2>
-              <p className="text-gray-700 whitespace-pre-line leading-relaxed text-base md:text-lg">{details.summary}</p>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Description</h2>
+              <p className="text-white whitespace-pre-line leading-relaxed text-base md:text-lg">{details.summary}</p>
             </div>
           )}
 
           {details.usage && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 text-indigo-700">Usage</h2>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg">{details.usage}</p>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Usage</h2>
+              <p className="text-white leading-relaxed text-base md:text-lg">{details.usage}</p>
             </div>
           )}
 
           {details.features && details.features.length > 0 && (
             <div>
-              <h2 className="text-2xl font-bold mb-4 text-indigo-700">Features</h2>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Features</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {details.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-gradient-to-r from-indigo-50 to-pink-50 rounded-lg shadow-sm">
-                    <div className="w-2 h-2 rounded-full bg-pink-500 mt-2"></div>
-                    <span className="text-gray-700 text-base">{feature}</span>
+                  <div key={idx} className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                    <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                    <span className="text-white text-base">{feature}</span>
                   </div>
                 ))}
               </div>

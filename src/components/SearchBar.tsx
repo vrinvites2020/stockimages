@@ -38,16 +38,16 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4">
+    <div className="w-full max-w-4xl mx-auto space-y-4 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6 text-white">
       <div className="relative">
         <input
           type="text"
           placeholder="Search assets..."
-          className="input-field pl-12 text-foreground placeholder-muted"
+          className="input-field pl-12 text-white placeholder-gray-400 bg-[#18122B] border border-purple-700/40 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 shadow-md"
           onChange={(e) => handleSearch(e.target.value)}
         />
         <svg
-          className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted"
+          className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-purple-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -63,7 +63,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
       
       <div className="flex flex-wrap gap-4">
         <select
-          className="input-field max-w-[200px] text-foreground"
+          className="input-field max-w-[200px] text-white bg-[#18122B] border border-purple-700/40 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 shadow"
           value={category}
           onChange={handleCategoryChange}
         >
@@ -74,7 +74,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         </select>
 
         <select
-          className="input-field max-w-[200px] text-foreground"
+          className="input-field max-w-[200px] text-white bg-[#18122B] border border-purple-700/40 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 shadow"
           value={language}
           onChange={handleLanguageChange}
         >
@@ -89,7 +89,7 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
         </select>
 
         <select
-          className="input-field max-w-[200px] text-foreground"
+          className="input-field max-w-[200px] text-white bg-[#18122B] border border-purple-700/40 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 shadow"
           value={sortBy}
           onChange={handleSortChange}
         >

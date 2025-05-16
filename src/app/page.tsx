@@ -71,7 +71,7 @@ export default function Home() {
 
   // The grid should always show filteredAssets
   return (
-    <div className="min-h-screen bg-[#f5f6fa]">
+    <div className="min-h-screen">
       {/* New Hero Section */}
       <HeroSection />
 
@@ -83,7 +83,7 @@ export default function Home() {
       </section>
 
       {/* Search Bar and Assets Grid */}
-      <section className="max-w-7xl w-full mx-auto px-4 py-12">
+      <section id="searchbar-section" className="max-w-7xl w-full mx-auto px-4 py-12">
         <div className="w-full animate-slide-up mb-8">
           <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
         </div>

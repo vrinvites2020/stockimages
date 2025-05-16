@@ -143,8 +143,8 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-indigo-50 via-white to-white py-8">
-      <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl bg-gradient-to-br from-blue-50/80 to-white shadow-2xl py-8 overflow-hidden">
+    <section className="w-full py-8 text-white">
+      <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl shadow-2xl py-8 overflow-hidden">
         <div
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide snap-none cursor-grab relative"
