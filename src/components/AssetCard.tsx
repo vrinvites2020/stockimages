@@ -1,6 +1,4 @@
 import Image from 'next/image'
-import { useState } from 'react'
-import Script from 'next/script'
 import { useRouter } from 'next/navigation'
 
 interface AssetCardProps {
@@ -14,59 +12,9 @@ interface AssetCardProps {
 
 export default function AssetCard({ id, title, category, language, price, imageUrl }: AssetCardProps) {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-
-  const initializePayment = async () => {
-    try {
-      setLoading(true)
-      const response = await fetch('/api/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: price,
-          assetId: id.toString(),
-          title: title,
-        }),
-      })
-
-      const order = await response.json()
-
-      const options: Razorpay.Options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
-        amount: order.amount,
-        currency: order.currency,
-        name: 'Stock Images',
-        description: title,
-        order_id: order.id,
-        handler: function () {
-          // The webhook will handle the payment verification
-          alert('Payment initiated! You will receive access once the payment is confirmed.');
-        },
-        prefill: {
-          name: 'User Name',
-          email: 'user@example.com',
-          contact: '9999999999',
-        },
-        theme: {
-          color: '#2563EB',
-        },
-      }
-
-      const razorpay = new window.Razorpay(options)
-      razorpay.open()
-    } catch (error) {
-      console.error('Payment initialization error:', error)
-      alert('Error initializing payment')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       <div
         className="card hover-card group cursor-pointer w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 transition-all duration-500 relative text-white"
         onClick={() => router.push(`/assets/${id}`)}
@@ -91,12 +39,11 @@ export default function AssetCard({ id, title, category, language, price, imageU
             <button 
               onClick={(e) => {
                 e.stopPropagation()
-                initializePayment()
+                router.push(`/assets/${id}`)
               }}
-              disabled={loading}
-              className={`btn-primary text-sm px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 transition-all duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className="btn-primary text-sm px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 transition-all duration-300"
             >
-              {loading ? 'Processing...' : 'Buy Now'}
+              Buy Now
             </button>
           </div>
         </div>

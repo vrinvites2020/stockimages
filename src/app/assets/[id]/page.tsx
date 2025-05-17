@@ -131,7 +131,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                       if (downloadRef.current) {
                         downloadRef.current.click();
                       }
-                      setTimeout(() => setShowToast(false), 3500);
+                      setTimeout(() => setShowToast(false), 2500);
                     }}
                   />
                   {/* Hidden anchor for programmatic download */}
