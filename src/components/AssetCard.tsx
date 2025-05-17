@@ -68,7 +68,7 @@ export default function AssetCard({ id, title, category, language, price, imageU
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       <div
-        className="card hover-card group cursor-pointer w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xs xl:max-w-xs bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 transition-all duration-500 relative text-white"
+        className="card hover-card group cursor-pointer w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 transition-all duration-500 relative text-white"
         onClick={() => router.push(`/assets/${id}`)}
       >
         <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
