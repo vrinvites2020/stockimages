@@ -85,7 +85,7 @@ export default function Home() {
       {/* Search Bar and Assets Grid */}
       <section id="searchbar-section" className="max-w-7xl w-full mx-auto px-4 py-12">
         <div className="w-full animate-slide-up mb-8">
-          <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+          <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} resultsCount={filteredAssets.length} />
         </div>
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center sm:place-items-start">
           {filteredAssets.map(asset => (

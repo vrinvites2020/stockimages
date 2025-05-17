@@ -48,7 +48,7 @@ export const weddingInvitationDetails = [{
     id: 3,
     imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
-    title: "Traditional Wedding Photography Guide",
+    title: "Birthday Invitation",
     summary: `Download our comprehensive Traditional Wedding Photography Guide and master the art of capturing beautiful wedding moments.\nThis guide is perfect for photographers looking to specialize in traditional wedding photography.\n\nLearn essential techniques, composition tips, and how to capture the most important moments of the wedding ceremony.`,
     usage: "Use this guide to enhance your wedding photography skills. Perfect for both beginners and experienced photographers looking to specialize in traditional wedding photography.",
     features: [
