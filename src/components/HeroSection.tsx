@@ -1,12 +1,60 @@
 import React from 'react';
+import SearchBar from '@/components/SearchBar';
+import { weddingInvitationDetails } from '@/data/constant';
 
-const HeroSection = () => {
-  // Scroll to searchbar section
-  const handleExploreClick = () => {
-    const el = document.getElementById('searchbar-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+type Asset = {
+  id: number;
+  title: string;
+  category: string;
+  language: string;
+  price: number;
+  imageUrl: string;
+}
+
+const assets: Asset[] = weddingInvitationDetails.map(item => ({
+  id: item.id,
+  title: item.title,
+  category: item.category,
+  language: item.language,
+  price: item.price,
+  imageUrl: item.imageUrl
+}));
+
+interface HeroSectionProps {
+  filteredAssets: Asset[];
+  setFilteredAssets: (assets: Asset[]) => void;
+}
+
+const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) => {
+  const handleSearch = (query: string) => {
+    const filtered = assets.filter(asset => 
+      asset.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredAssets(filtered);
+  };
+
+  const handleFilterChange = (category: string, language: string, sortBy: string) => {
+    let filtered: Asset[] = [...assets];
+    if (category !== 'all') {
+      filtered = filtered.filter(asset => 
+        asset.category.toLowerCase() === category.toLowerCase()
+      );
     }
+    if (language !== 'all') {
+      filtered = filtered.filter(asset => 
+        asset.language.toLowerCase() === language.toLowerCase()
+      );
+    }
+    if (sortBy === 'price-low') {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-high') {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'newest') {
+      filtered.sort((a, b) => b.id - a.id);
+    } else {
+      filtered.sort((a, b) => a.id - b.id);
+    }
+    setFilteredAssets(filtered);
   };
 
   return (
@@ -23,12 +71,13 @@ const HeroSection = () => {
         <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 font-medium drop-shadow">
           Find high-quality templates, icons, and graphics for your next project
         </p>
-        <button
-          className="px-10 py-4 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-bold text-lg shadow-xl hover:scale-105 transition-transform"
-          onClick={handleExploreClick}
-        >
-          Explore
-        </button>
+        <div className="w-full max-w-4xl">
+          <SearchBar 
+            onSearch={handleSearch}
+            onFilterChange={handleFilterChange}
+            resultsCount={filteredAssets.length}
+          />
+        </div>
       </div>
       {/* Custom keyframes for up-down animation */}
       <style jsx global>{`

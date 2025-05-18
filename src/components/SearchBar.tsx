@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
@@ -7,7 +7,7 @@ interface SearchBarProps {
   resultsCount?: number
 }
 
-export default function SearchBar({ onSearch, onFilterChange, resultsCount }: SearchBarProps) {
+export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) {
   const [category, setCategory] = useState('all')
   const [language, setLanguage] = useState('all')
   const [sortBy, setSortBy] = useState('newest')
@@ -131,25 +131,6 @@ export default function SearchBar({ onSearch, onFilterChange, resultsCount }: Se
           </div>
         </div>
       </motion.div>
-
-      <AnimatePresence>
-        {typeof resultsCount === 'number' && resultsCount === 0 && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="text-center py-8 text-muted"
-          >
-            <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              No Results Found
-            </h3>
-            <p className="mt-2 text-gray-400">
-              We couldn&apos;t find any assets matching your search or filters.<br />
-              We&apos;re working hard to add more—please check back soon!
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   )
 } 
