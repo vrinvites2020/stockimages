@@ -66,6 +66,29 @@ export const weddingInvitationDetails = [{
     language: "Telugu",
     category: "Birthday",
     downloadUrl: "https://drive.google.com/uc?export=download&id=1_RLIc3zPNolZOcGFVau_e1Vgb61N-Lgd"
+  },
+  {
+    id: 4,
+    imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
+    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    title: "Birthday Invitation",
+    summary: `Download our comprehensive Traditional Wedding Photography Guide and master the art of capturing beautiful wedding moments.\nThis guide is perfect for photographers looking to specialize in traditional wedding photography.\n\nLearn essential techniques, composition tips, and how to capture the most important moments of the wedding ceremony.`,
+    usage: "Use this guide to enhance your wedding photography skills. Perfect for both beginners and experienced photographers looking to specialize in traditional wedding photography.",
+    features: [
+      "Adobe Premiere Pro CC 2015 and above. No need After Effects",
+      "No Plugins Required",
+      "Very Easy to customize",
+      "Video Orientation is Vertical",
+      "Project Length is 1min 35 sec",
+      "Total Scenes 11",
+      "Each scene is 8 second Duration (you can use any audio dutation editable with 8 sec)",
+      "Placeholders Formats - PSD, JPG, PNG",
+      "Project Size 540 MB",
+    ],
+    price: 499,
+    language: "Telugu",
+    category: "Birthday",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=1_RLIc3zPNolZOcGFVau_e1Vgb61N-Lgd"
   }];
 
   
