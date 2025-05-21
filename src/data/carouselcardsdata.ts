@@ -64,7 +64,7 @@ export const carouselCardsData: CarouselCard[] = [
     id: 10,
     title: "Wedding Celebration",
     category: "Wedding",
-    imageUrl: "/categories/0010.png"
+    imageUrl: "/categories/010.png"
   },
   {
     id: 11,
