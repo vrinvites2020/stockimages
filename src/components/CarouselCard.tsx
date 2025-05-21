@@ -31,7 +31,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({
         transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
-      <div className="relative aspect-video w-full h-80 overflow-hidden rounded-t-2xl">
+      <div className="relative aspect-video w-full h-[344px] overflow-hidden rounded-2xl">
         <Image
           src={imageUrl}
           alt={`${category} preview`}
