@@ -36,33 +36,29 @@ const VideoPlayer = () => {
 
   return (
     <div className="w-full bg-gradient-to-br from-[#1a1a2e] via-[#23234b] to-[#3a3a6a] relative overflow-hidden">
-      <div className="relative max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <div className="relative max-w-[2800px] mx-auto px-4 sm:px-6 lg:px-8 z-10 flex flex-col gap-4 pt-2 pb-2 md:pt-6 md:pb-6">
         {/* First Video */}
-        <div className="relative w-full rounded-2xl overflow-hidden transform transition-all duration-500 ">
-          <div className="relative w-full h-0 pb-[56.25%] sm:pb-[56.25%] md:pb-[56.25%] lg:pb-[56.25%]">
-            <video
-              ref={videoRef1}
-              className="absolute inset-0 w-full h-full object-contain"
-              playsInline
-              muted
-              loop
-              preload="auto"
-            />
-          </div>
+        <div className="relative w-full rounded-2xl overflow-hidden transform transition-all duration-500">
+          <video
+            ref={videoRef1}
+            className="w-full h-auto object-contain"
+            playsInline
+            muted
+            loop
+            preload="auto"
+          />
         </div>
 
         {/* Second Video */}
-        <div className="relative w-full rounded-2xl overflow-hidden transform transition-all duration-500 ">
-          <div className="relative w-full h-0 pb-[56.25%] sm:pb-[56.25%] md:pb-[56.25%] lg:pb-[56.25%]">
-            <video
-              ref={videoRef2}
-              className="absolute inset-0 w-full h-full object-contain"
-              playsInline
-              muted
-              loop
-              preload="auto"
-            />
-          </div>
+        <div className="relative w-full rounded-2xl overflow-hidden transform transition-all duration-500">
+          <video
+            ref={videoRef2}
+            className="w-full h-auto object-contain"
+            playsInline
+            muted
+            loop
+            preload="auto"
+          />
         </div>
       </div>
     </div>

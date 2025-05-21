@@ -60,10 +60,10 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
         
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col lg:flex-row gap-8 items-stretch justify-center">
           {/* Left Column - Media */}
-          <div className="lg:col-span-2">
-            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 overflow-hidden relative group">
+          <div className="w-full lg:w-2/3 flex-shrink-0">
+            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 overflow-hidden relative group h-full flex flex-col justify-center">
               {details.imageUrl && details.videoUrl && (
                 <div className="relative aspect-video group cursor-pointer">
                   <Image
@@ -103,12 +103,12 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
           </div>
 
           {/* Right Column - Details */}
-          <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6 sticky top-24 flex flex-col gap-6">
-              <h1 className="text-3xl font-extrabold mb-2 text-indigo-700 leading-tight">{details.title}</h1>
-              <div className="flex flex-wrap items-center gap-3 mb-2">
+          <div className="w-full lg:w-1/3 flex flex-col justify-center">
+            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-8 flex flex-col items-center text-center gap-6 h-full justify-center">
+              <h1 className="text-3xl font-extrabold mb-2 text-indigo-700 leading-tight drop-shadow-lg">{details.title}</h1>
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
                 {details.language && (
-                  <span className="text-xs font-medium text-gray-500 bg-indigo-50 px-2 py-1 rounded-full">{details.language}</span>
+                  <span className="text-xs font-medium text-gray-500 bg-indigo-50 px-2 py-1 rounded-full shadow">{details.language}</span>
                 )}
                 {details.category && (
                   <span className="text-xs font-medium text-white bg-gradient-to-r from-indigo-500 to-pink-400 px-3 py-1 rounded-full shadow-sm">
@@ -117,10 +117,9 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                 )}
               </div>
               {details.price && (
-                <div className="mb-2">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-4xl font-bold text-pink-600">₹{details.price.toLocaleString('en-IN')}</span>
-                    {/* No download button shown */}
+                <div className="mb-2 w-full flex flex-col items-center">
+                  <div className="flex items-center justify-center mb-4 w-full">
+                    <span className="text-4xl font-bold text-pink-600 drop-shadow">₹{details.price.toLocaleString('en-IN')}</span>
                   </div>
                   <RazorpayCheckoutButton 
                     amount={details.price} 

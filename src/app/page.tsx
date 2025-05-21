@@ -89,7 +89,7 @@ export default function Home() {
 
 
         {/* Video Player Section */}
-        <section className="w-full bg-gradient-to-br from-[#1a1a2e] via-[#23234b] to-[#3a3a6a] py-16 md:py-24">
+        <section className="w-full bg-gradient-to-br from-[#1a1a2e] via-[#23234b] to-[#3a3a6a] py-0">
           <VideoPlayer />
         </section>
 
