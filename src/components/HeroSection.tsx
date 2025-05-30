@@ -79,7 +79,7 @@ const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) =>
           />
         </div>
         <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 mt-8 font-medium drop-shadow">
-        If you're from another state or language? No worries just download our project and replace the audio and fonts in your language."        </p>
+        If you are from another state or language? No worries just download our project and replace the audio and fonts in your language.</p>
       </div>
       {/* Custom keyframes for up-down animation */}
       <style jsx global>{`
