@@ -90,6 +90,7 @@ export default function Home() {
 
         {/* Video Player Section */}
         <section className="w-full bg-gradient-to-br from-[#1a1a2e] via-[#23234b] to-[#3a3a6a] py-0">
+        <h2 className="text-center pt-2 text-2xl md:text-4xl font-extrabold pt-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg">Here remaining posters will come</h2>
           <VideoPlayer />
         </section>
 
