@@ -1,37 +1,97 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
-// Simple animated avatar using SVG and CSS
-const AnimatedAvatar = () => (
-  <div className="w-20 h-20 rounded-[30%] bg-gradient-to-b from-[#3a1c71] via-[#d76d77] to-[#ffaf7b] flex items-center justify-center shadow-lg animate-bounce-slow">
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="20" r="12" fill="#fff" fillOpacity="0.9" />
-      <ellipse cx="24" cy="38" rx="14" ry="8" fill="#fff" fillOpacity="0.7" />
-    </svg>
-  </div>
-);
-
-const people = [
-  { name: 'Suryateja', role: 'Warangal' },
-  { name: 'Jayaram', role: 'Vijayawada' },
-  { name: 'Chinmayi', role: 'Hyderabad' },
-  { name: 'Mahesh', role: 'Mumbai' },
-  { name: 'Sadashiva', role: 'Tamil Nadu' },
-  { name: 'Rajini', role: 'Kerala' },
-  { name: 'Vasudev', role: 'Karnataka' },
+const recentDownloads = [
+  { name: 'Suryateja', role: 'Warangal', image: '/images/boy 1.jpg' },
+  { name: 'Jayaram', role: 'Vijayawada', image: '/images/boy 2.jpg' },
+  { name: 'Chinmayi', role: 'Hyderabad', image: '/images/girl 1.jpg' },
+  { name: 'Mahesh', role: 'Mumbai', image: '/images/boy 3.jpg' },
+  { name: 'Sadashiva', role: 'Tamil Nadu', image: '/images/boy 4.jpg' },
+  { name: 'Rajini', role: 'Kerala', image: '/images/girl 2.jpg' },
+  { name: 'Vasudev', role: 'Karnataka', image: '/images/boy 5.jpg' },
+  { name: 'Priya', role: 'Delhi', image: '/images/girl 3.jpg' },
+  { name: 'Rahul', role: 'Punjab', image: '/images/boy 6.jpg' },
+  { name: 'Ananya', role: 'Kolkata', image: '/images/girl 4.jpg' },
 ];
 
 export default function RecentDownloads() {
+  const [trackWidth, setTrackWidth] = useState(0);
+  const originalSetRef = useRef<HTMLDivElement>(null);
+  const animationDuration = 40; // seconds
+
+  useEffect(() => {
+    if (originalSetRef.current) {
+      setTrackWidth(originalSetRef.current.getBoundingClientRect().width);
+    }
+    // Optional: update on window resize for responsiveness
+    const handleResize = () => {
+      if (originalSetRef.current) {
+        setTrackWidth(originalSetRef.current.getBoundingClientRect().width);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section className="w-full py-12 bg-[#2a2040] flex flex-col items-center">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Recent Downloads</h2>
-      <div className="flex flex-wrap gap-8 justify-center mb-12">
-        {people.map((person) => (
-          <div key={person.name} className="flex flex-col items-center">
-            <AnimatedAvatar />
-            <span className="mt-2 text-white font-semibold text-base drop-shadow-lg">{person.name}</span>
-            <span className="text-xs text-purple-300 font-medium">{person.role}</span>
+      <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl shadow-2xl py-8 overflow-hidden">
+        <div
+          className="flex gap-8 overflow-x-hidden carousel-container"
+          style={{
+            minHeight: '12rem',
+            WebkitOverflowScrolling: 'touch',
+            position: 'relative',
+          }}
+        >
+          <div
+            className="carousel-track flex"
+            style={{
+              width: trackWidth ? `${trackWidth * 2}px` : 'auto',
+              animation: trackWidth
+                ? `scroll-carousel ${animationDuration}s linear infinite`
+                : 'none',
+            }}
+          >
+            {/* First set (measured for width) */}
+            <div className="flex gap-8" ref={originalSetRef}>
+              {recentDownloads.map((download, idx) => (
+                <div key={`${download.name}-${idx}`} className="flex flex-col items-center min-w-[120px]">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden shadow-lg transition-transform duration-300 hover:scale-110">
+                    <Image
+                      src={download.image}
+                      alt={download.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 80px, 80px"
+                    />
+                  </div>
+                  <span className="mt-2 text-white font-semibold text-base drop-shadow-lg">{download.name}</span>
+                  <span className="text-xs text-purple-300 font-medium">{download.role}</span>
+                </div>
+              ))}
+            </div>
+            {/* Second set (for seamless loop) */}
+            <div className="flex gap-8">
+              {recentDownloads.map((download, idx) => (
+                <div key={`${download.name}-dup-${idx}`} className="flex flex-col items-center min-w-[120px]">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden shadow-lg transition-transform duration-300 hover:scale-110">
+                    <Image
+                      src={download.image}
+                      alt={download.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 80px, 80px"
+                    />
+                  </div>
+                  <span className="mt-2 text-white font-semibold text-base drop-shadow-lg">{download.name}</span>
+                  <span className="text-xs text-purple-300 font-medium">{download.role}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
       <div className="w-full flex flex-col md:flex-row justify-center items-center gap-8 mt-4">
         <div className="flex-1 text-center">
@@ -48,12 +108,22 @@ export default function RecentDownloads() {
         </div>
       </div>
       <style jsx>{`
-        .animate-bounce-slow {
-          animation: bounce 2.5s infinite alternate;
+        .carousel-container {
+          position: relative;
+          overflow: hidden;
         }
-        @keyframes bounce {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-12px); }
+        .carousel-container:hover .carousel-track,
+        .carousel-track:hover,
+        .carousel-track *:hover {
+          animation-play-state: paused !important;
+        }
+        @keyframes scroll-carousel {
+          0% {
+            transform: translateX(-${trackWidth}px);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
       `}</style>
     </section>
