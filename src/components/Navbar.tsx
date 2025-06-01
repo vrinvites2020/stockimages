@@ -14,9 +14,9 @@ const Navbar = () => {
         {/* Logo/Title */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-500 text-white bg-clip-text"
+          className="flex items-center gap-2 text-xl font-bold bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-500 text-white bg-clip-text"
         >
-          <span>StockImages</span>
+          <span>VR Visual Magics</span>
         </Link>
 
         <div className="flex items-center gap-6">
