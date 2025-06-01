@@ -32,11 +32,16 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
 
   return (
     <section className="w-full py-8 text-white">
+      <h1 className="text-center   text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg">
+        UPCOMING PROJECTS
+      </h1>
+      <p className="text-center text-xl md:text-xl text-gray-200 max-w-3xl mx-auto mb-8 mt-8 font-medium drop-shadow">
+       Be Ready to impress your Wedding Couples with our Designs </p>
       <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl shadow-2xl py-8 overflow-hidden">
         <div
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab relative carousel-container"
-          style={{ 
+          style={{
             minHeight: '22rem',
             WebkitOverflowScrolling: 'touch'
           }}

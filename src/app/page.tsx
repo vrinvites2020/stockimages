@@ -9,6 +9,7 @@ import VideoPlayer from '@/components/VideoPlayer';
 import { motion, AnimatePresence } from 'framer-motion';
 import RecentDownloads from '@/components/RecentDownloads';
 import FinalBanner from '@/components/FinalBanner';
+import FixedContact from '@/components/FixedContact'
 
 type Asset = {
   id: number;
@@ -105,6 +106,9 @@ export default function Home() {
         </section>
       </div>
       <FinalBanner />
+
+      {/* Fixed Contact Card with Icons */}
+      <FixedContact/>
     </>
   )
 } 
