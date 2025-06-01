@@ -7,18 +7,18 @@ const VideoPlayer = () => {
   const videoRef2 = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video1 = videoRef1.current;
+    const video2 = videoRef2.current;
+
     const initializeVideos = async () => {
       try {
-        if (videoRef1.current && videoRef2.current) {
+        if (video1 && video2) {
           // Set sources directly in the video elements
-          videoRef1.current.src = '/videos/01.mp4';
-          videoRef2.current.src = '/videos/02.mp4';
-          
+          video1.src = '/videos/01.mp4';
+          video2.src = '/videos/02.mp4';
+
           // Use Promise.all to load both videos concurrently
-          await Promise.all([
-            videoRef1.current.play(),
-            videoRef2.current.play()
-          ]);
+          await Promise.all([video1.play(), video2.play()]);
         }
       } catch (error) {
         console.error('Error playing videos:', error);
@@ -29,8 +29,8 @@ const VideoPlayer = () => {
 
     // Cleanup function to pause videos when component unmounts
     return () => {
-      if (videoRef1.current) videoRef1.current.pause();
-      if (videoRef2.current) videoRef2.current.pause();
+      if (video1) video1.pause();
+      if (video2) video2.pause();
     };
   }, []);
 
@@ -65,4 +65,4 @@ const VideoPlayer = () => {
   );
 };
 
-export default VideoPlayer; 
+export default VideoPlayer;
