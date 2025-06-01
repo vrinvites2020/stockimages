@@ -58,29 +58,32 @@ const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) =>
   };
 
   return (
-    <div className="min-h-[60vh] bg-gradient-to-br from-[#18122B] via-[#1E1B3A] to-[#232946] flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-[60vh] bg-gradient-to-br from-[#18122B] via-[#1E1B3A] to-[#232946] flex items-center justify-center relative overflow-hidden py-4 md:py-8">
       {/* Floating circles and lines for background flair */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-gradient-to-tr from-purple-500 to-indigo-500 rounded-full opacity-30 blur-2xl animate-pulse" />
       <div className="absolute bottom-20 right-32 w-16 h-16 bg-gradient-to-tr from-purple-400 to-indigo-400 rounded-full opacity-40 blur-xl animate-pulse" />
       <div className="absolute top-1/3 right-1/4 w-8 h-8 border-2 border-purple-400 rounded-full opacity-60 animate-bounce" />
       <div className="absolute bottom-1/4 left-1/3 w-12 h-12 border-2 border-indigo-400 rounded-full opacity-50 animate-bounce delay-1000" />
-      <div className="container mx-auto px-4 flex flex-col items-center justify-center relative z-10 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg">
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative z-10 text-center pt-8 pb-12">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg px-4">
           Discover Creative Assets
         </h1>
-        <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 font-medium drop-shadow">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 font-medium drop-shadow px-4">
           Find high-quality templates, icons, and graphics for your next project
         </p>
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-4xl px-4 sm:px-0">
           <SearchBar 
             onSearch={handleSearch}
             onFilterChange={handleFilterChange}
             resultsCount={filteredAssets.length}
           />
         </div>
-        <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 mt-8 font-medium drop-shadow">
-        If you are from another state or language? No worries just download our project and replace the audio and fonts in your language.</p>
+        <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mt-8 mb-4 sm:mb-8 font-medium drop-shadow px-4 sm:px-0">
+          If you are from another state or language? No worries just download our project and replace the audio and fonts in your language.
+        </p>
       </div>
+      
       {/* Custom keyframes for up-down animation */}
       <style jsx global>{`
         @keyframes updown {
