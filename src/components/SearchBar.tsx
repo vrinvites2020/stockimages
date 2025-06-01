@@ -83,8 +83,6 @@ export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) 
           >
             <option value="all">All Categories</option>
             <option value="Wedding">Wedding</option>
-            <option value="Engagement">Engagement</option>
-            <option value="Birthday">Birthday</option>
           </select>
           <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
             <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
