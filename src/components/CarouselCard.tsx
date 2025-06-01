@@ -41,9 +41,10 @@ const CarouselCard: React.FC<CarouselCardProps> = ({
           unoptimized
         />
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex justify-center w-full pointer-events-none">
-          <span className="text-xs bg-gradient-to-r from-pink-500 to-purple-500 text-white px-4 py-1 rounded-full font-semibold shadow-lg border border-purple-400/40 backdrop-blur-md">
+          {/* <span className="text-xs bg-gradient-to-r from-pink-500 to-purple-500 text-white px-4 py-1 rounded-full font-semibold shadow-lg border border-purple-400/40 backdrop-blur-md">
             {category}
-          </span>
+          </span> */} 
+          {/* #TODO: in future we will add category type */}
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl"></div>
       </div>
