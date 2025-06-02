@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
 import AssetCard from '@/components/AssetCard'
 import Carousel from '@/components/Carousel'
 import { weddingInvitationDetails } from '@/data/constant'
@@ -29,8 +29,15 @@ const assets: Asset[] = weddingInvitationDetails.map(item => ({
   imageUrl: item.imageUrl
 }))
 
+function useHasMounted() {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => setHasMounted(true), []);
+  return hasMounted;
+}
+
 export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets)
+  const hasMounted = useHasMounted();
 
   // When a category is selected from the carousel or tabs
   const handleCategorySelect = (category: string) => {
@@ -68,22 +75,24 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <AnimatePresence>
-                <motion.div 
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="text-center py-16"
-                >
-                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    No Results Found
-                  </h3>
-                  <p className="mt-4 text-gray-400 text-lg">
-                    We couldn&apos;t find any assets matching your search or filters.<br />
-                    We&apos;re working hard to add more—please check back soon!
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+              hasMounted && (
+                <AnimatePresence>
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="text-center py-16"
+                  >
+                    <h3 className="text-2xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      No Results Found
+                    </h3>
+                    <p className="mt-4 text-gray-400 text-lg">
+                      We couldn&apos;t find any assets matching your search or filters.<br />
+                      We&apos;re working hard to add more—please check back soon!
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              )
             )}
           </div>
         </section>
@@ -113,4 +122,4 @@ export default function Home() {
 
     </>
   )
-} 
+}
