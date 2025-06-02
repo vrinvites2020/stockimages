@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import SearchBar from '@/components/SearchBar';
 import { weddingInvitationDetails } from '@/data/constant';
@@ -83,17 +85,6 @@ const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) =>
           If you are from another state or language? No worries just download our project and replace the audio and fonts in your language.
         </p>
       </div>
-      
-      {/* Custom keyframes for up-down animation */}
-      <style jsx global>{`
-        @keyframes updown {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-32px); }
-        }
-        .animate-updown {
-          animation: updown 2.5s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 };

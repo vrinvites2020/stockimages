@@ -104,11 +104,13 @@ export default function Home() {
             <Carousel onCategorySelect={handleCategorySelect} />
           </div>
         </section>
-      </div>
-      <FinalBanner />
 
-      {/* Fixed Contact Card with Icons */}
-      <FixedContact/>
+        <FinalBanner />
+
+        {/* Fixed Contact Card with Icons */}
+        <FixedContact/>
+      </div>
+
     </>
   )
 } 
