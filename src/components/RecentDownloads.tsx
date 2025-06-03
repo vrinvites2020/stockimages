@@ -116,7 +116,7 @@ export default function RecentDownloads() {
                         alt={download.name}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="(max-width: 768px) 96px, 96px"
+                        sizes="96px"
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
