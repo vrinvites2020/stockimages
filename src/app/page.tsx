@@ -60,9 +60,9 @@ export default function Home() {
         <section id="searchbar-section" className="max-w-7xl w-full mx-auto px-4 py-12">
           <div className="max-w-6xl mx-auto">
             {filteredAssets.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center sm:place-items-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 place-items-center sm:place-items-start">
                 {filteredAssets.map(asset => (
-                  <div key={asset.id} className="animate-fade-in w-full max-w-[300px]">
+                  <div key={asset.id} className="animate-fade-in w-full max-w-[500px]">
                     <AssetCard
                       id={asset.id}
                       title={asset.title}

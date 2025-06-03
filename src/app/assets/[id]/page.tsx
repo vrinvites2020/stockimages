@@ -105,21 +105,15 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
           {/* Right Column - Details */}
           <div className="w-full lg:w-1/3 flex flex-col justify-center">
             <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-8 flex flex-col items-center text-center gap-6 h-full justify-center">
-              <h1 className="text-3xl font-extrabold mb-2 text-indigo-700 leading-tight drop-shadow-lg">{details.title}</h1>
-              <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
-                {details.language && (
-                  <span className="text-xs font-medium text-gray-500 bg-indigo-50 px-2 py-1 rounded-full shadow">{details.language}</span>
-                )}
-                {details.category && (
-                  <span className="text-xs font-medium text-white bg-gradient-to-r from-indigo-500 to-pink-400 px-3 py-1 rounded-full shadow-sm">
-                    {details.category}
-                  </span>
-                )}
+              <h1 className="text-3xl font-extrabold mb-2 text-white leading-tight drop-shadow-lg">{details.title}</h1>
+              <div className="flex flex-wrap font-bold items-center justify-center gap-3 mb-2">
+                <p>Every Purchase Inspires us to create more and sgare even better projects with you</p>
+                <p>Your support means everything, thank you for being part of our journey</p>
               </div>
               {details.price && (
                 <div className="mb-2 w-full flex flex-col items-center">
                   <div className="flex items-center justify-center mb-4 w-full">
-                    <span className="text-4xl font-bold text-pink-600 drop-shadow">₹{details.price.toLocaleString('en-IN')}</span>
+                    <span className="text-4xl font-bold text-white drop-shadow">₹{details.price.toLocaleString('en-IN')}</span>
                   </div>
                   <RazorpayCheckoutButton 
                     amount={details.price} 
@@ -148,23 +142,10 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
 
         {/* Description Section */}
         <div className="mt-8 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6">
-          {details.summary && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Description</h2>
-              <p className="text-white whitespace-pre-line leading-relaxed text-base md:text-lg">{details.summary}</p>
-            </div>
-          )}
-
-          {details.usage && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Usage</h2>
-              <p className="text-white leading-relaxed text-base md:text-lg">{details.usage}</p>
-            </div>
-          )}
-
+          
           {details.features && details.features.length > 0 && (
             <div>
-              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Features</h2>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Project Features</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {details.features.map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
