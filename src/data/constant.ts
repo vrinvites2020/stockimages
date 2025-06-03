@@ -1,6 +1,6 @@
 export const weddingInvitationDetails = [{
     id: 1,
-    imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
+    imageUrl: "/assetcard/poster1.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Photography Guide",
     summary: `Download VR Visual Magics Wedding Invitations Templates and enjoy the best experience where you will find what you needed and what you searched for Our site provides templates for Complete Premiere Pro Projects and no need to use After Effects`,
@@ -23,7 +23,7 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 2,
-    imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
+    imageUrl: "/assetcard/poster1.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Photography Guide",
     summary: `Download our comprehensive Traditional Wedding Photography Guide and master the art of capturing beautiful wedding moments.\nThis guide is perfect for photographers looking to specialize in traditional wedding photography.\n\nLearn essential techniques, composition tips, and how to capture the most important moments of the wedding ceremony.`,
@@ -46,7 +46,7 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 3,
-    imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
+    imageUrl: "/assetcard/poster1.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Birthday Invitation",
     summary: `Download our comprehensive Traditional Wedding Photography Guide and master the art of capturing beautiful wedding moments.\nThis guide is perfect for photographers looking to specialize in traditional wedding photography.\n\nLearn essential techniques, composition tips, and how to capture the most important moments of the wedding ceremony.`,
@@ -69,7 +69,7 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 4,
-    imageUrl: "https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=",
+    imageUrl: "/assetcard/poster1.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Birthday Invitation",
     summary: `Download our comprehensive Traditional Wedding Photography Guide and master the art of capturing beautiful wedding moments.\nThis guide is perfect for photographers looking to specialize in traditional wedding photography.\n\nLearn essential techniques, composition tips, and how to capture the most important moments of the wedding ceremony.`,
