@@ -68,7 +68,7 @@ export default function RecentDownloads() {
       <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-purple-900/20 blur-3xl -z-0" />
       <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-pink-900/20 blur-3xl -z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

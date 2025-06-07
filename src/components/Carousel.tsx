@@ -37,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
       </h1>
       <p className="text-center text-xl md:text-xl text-gray-200 max-w-3xl mx-auto mb-8 mt-8 font-medium drop-shadow">
        Be Ready to impress your Wedding Couples with our Designs </p>
-      <div className="relative w-full max-w-7xl mx-auto px-4 flex items-center justify-center rounded-3xl shadow-2xl py-8 overflow-hidden">
+      <div className="relative w-full mx-auto px-4 flex items-center justify-center rounded-3xl shadow-2xl py-8 overflow-hidden">
         <div
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab relative carousel-container"

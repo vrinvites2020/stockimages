@@ -68,7 +68,7 @@ const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) =>
       <div className="absolute bottom-1/4 left-1/3 w-12 h-12 border-2 border-indigo-400 rounded-full opacity-50 animate-bounce delay-1000" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative z-10 text-center pt-8 pb-12">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg px-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-200 font-extrabold mb-6 px-4">
           Discover Creative Assets
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 font-medium drop-shadow px-4">

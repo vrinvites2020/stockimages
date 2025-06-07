@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react';
-import AssetCard from '@/components/AssetCard'
-import Carousel from '@/components/Carousel'
-import { weddingInvitationDetails } from '@/data/constant'
-import HeroSection from '@/components/HeroSection';
-import VideoPlayer from '@/components/VideoPlayer';
-import { motion, AnimatePresence } from 'framer-motion';
-import RecentDownloads from '@/components/RecentDownloads';
-import FinalBanner from '@/components/FinalBanner';
-import FixedContact from '@/components/FixedContact'
+import { useEffect, useState } from "react";
+import AssetCard from "@/components/AssetCard";
+import Carousel from "@/components/Carousel";
+import { weddingInvitationDetails } from "@/data/constant";
+import HeroSection from "@/components/HeroSection";
+import VideoPlayer from "@/components/VideoPlayer";
+import { motion, AnimatePresence } from "framer-motion";
+import RecentDownloads from "@/components/RecentDownloads";
+import FinalBanner from "@/components/FinalBanner";
+import FixedContact from "@/components/FixedContact";
 
 type Asset = {
   id: number;
@@ -18,16 +18,16 @@ type Asset = {
   language: string;
   price: number;
   imageUrl: string;
-}
+};
 
-const assets: Asset[] = weddingInvitationDetails.map(item => ({
+const assets: Asset[] = weddingInvitationDetails.map((item) => ({
   id: item.id,
   title: item.title,
   category: item.category,
   language: item.language,
   price: item.price,
-  imageUrl: item.imageUrl
-}))
+  imageUrl: item.imageUrl,
+}));
 
 function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -36,33 +36,37 @@ function useHasMounted() {
 }
 
 export default function Home() {
-  const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets)
+  const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
   const hasMounted = useHasMounted();
 
   // When a category is selected from the carousel or tabs
   const handleCategorySelect = (category: string) => {
-    const filtered = category === 'all' 
-      ? assets 
-      : assets.filter(asset => asset.category === category);
+    const filtered =
+      category === "all"
+        ? assets
+        : assets.filter((asset) => asset.category === category);
     setFilteredAssets(filtered);
-  }
+  };
 
   return (
     <>
       <div className="min-h-screen">
         {/* Hero Section */}
-        <HeroSection 
+        <HeroSection
           filteredAssets={filteredAssets}
           setFilteredAssets={setFilteredAssets}
         />
 
         {/* Assets Grid */}
-        <section id="searchbar-section" className="max-w-7xl w-full mx-auto px-4 py-12">
-          <div className="max-w-6xl mx-auto">
+        <section
+          id="searchbar-section"
+          className="max-w-[1600px] w-full mx-auto px-4 py-12"
+        >
+          <div className="max-w-[1600px] mx-auto">
             {filteredAssets.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 place-items-center sm:place-items-start">
-                {filteredAssets.map(asset => (
-                  <div key={asset.id} className="animate-fade-in w-full max-w-[500px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {filteredAssets.map((asset) => (
+                  <div key={asset.id} className="animate-fade-in w-full">
                     <AssetCard
                       id={asset.id}
                       title={asset.title}
@@ -77,7 +81,7 @@ export default function Home() {
             ) : (
               hasMounted && (
                 <AnimatePresence>
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
@@ -87,8 +91,11 @@ export default function Home() {
                       No Results Found
                     </h3>
                     <p className="mt-4 text-gray-400 text-lg">
-                      We couldn&apos;t find any assets matching your search or filters.<br />
-                      We&apos;re working hard to add more—please check back soon!
+                      We couldn&apos;t find any assets matching your search or
+                      filters.
+                      <br />
+                      We&apos;re working hard to add more—please check back
+                      soon!
                     </p>
                   </motion.div>
                 </AnimatePresence>
@@ -97,29 +104,29 @@ export default function Home() {
           </div>
         </section>
 
-
         {/* Video Player Section */}
         <section className="w-full bg-gradient-to-br from-[#1a1a2e] via-[#23234b] to-[#3a3a6a] py-0">
           <VideoPlayer />
         </section>
 
-         {/* Recent Downloads Section */}
-        <RecentDownloads />
-        
-           
         {/* Carousel Section */}
-        <section className="max-w-7xl w-full mx-auto px-4 py-8">
+        <section className="w-full mx-auto px-4 py-8">
           <div className="animate-slide-up">
             <Carousel onCategorySelect={handleCategorySelect} />
           </div>
         </section>
 
+        {/* Recent Downloads Section */}
+        <section className="w-full place-items-center">
+          <RecentDownloads />
+        </section>
+
+
         <FinalBanner />
 
         {/* Fixed Contact Card with Icons */}
-        <FixedContact/>
+        <FixedContact />
       </div>
-
     </>
-  )
+  );
 }
