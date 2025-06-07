@@ -8,6 +8,7 @@ import { useState, useRef, use } from 'react';
 import { Play, Pause, ArrowLeft, Heart } from 'lucide-react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import FixedContact from "@/components/FixedContact";
 
 export default function AssetDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -166,6 +167,10 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
           <span>Payment successful! Downloading your file..</span>
         </div>
       )}
+
+      {/* Fixed Contact Card with Icons */}
+        <FixedContact />
+
     </div>
   );
 } 

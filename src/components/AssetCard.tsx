@@ -36,7 +36,7 @@ export default function AssetCard({
       <div className="p-4 text-black">
         <h3 className="text-lg font-semibold truncate">{title}</h3>
         <div className="flex items-center justify-between mt-3">
-          <p className="text-md font-medium">₹{price}</p>
+          <p className="text-lg font-medium">₹{price}</p>
           <button
             onClick={(e) => {
               e.stopPropagation();

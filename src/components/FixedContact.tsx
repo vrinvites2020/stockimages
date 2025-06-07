@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp, faTelegram } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp, faTelegram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 const FixedContact = () => {
   return (<>
@@ -15,6 +15,10 @@ const FixedContact = () => {
            <a href="https://t.me/+vh3UIWbhB09kYjU1" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-110">
              {/* Font Awesome Telegram icon */}
              <FontAwesomeIcon icon={faTelegram} className="text-blue-500 text-4xl md:text-5xl" />
+           </a>
+           <a href="https://t.me/+vh3UIWbhB09kYjU1" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-110">
+             {/* Font Awesome Youtube icon */}
+             <FontAwesomeIcon icon={faYoutube} className="text-red-500 text-4xl md:text-5xl" />
            </a>
          </div>
        </div>
