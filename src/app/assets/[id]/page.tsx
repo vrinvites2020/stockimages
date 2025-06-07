@@ -1,24 +1,30 @@
-'use client';
-import Image from 'next/image';
-import Script from 'next/script';
-import { weddingInvitationDetails } from '@/data/constant';
-import RazorpayCheckoutButton from '@/components/RazorpayCheckoutButton';
-import { notFound } from 'next/navigation';
-import { useState, useRef, use } from 'react';
-import { Play, Pause, ArrowLeft, Heart } from 'lucide-react';
-import Link from 'next/link';
-import clsx from 'clsx';
+"use client";
+import Image from "next/image";
+import Script from "next/script";
+import { weddingInvitationDetails } from "@/data/constant";
+import RazorpayCheckoutButton from "@/components/RazorpayCheckoutButton";
+import { notFound } from "next/navigation";
+import { useState, useRef, use } from "react";
+import { Play, Pause, ArrowLeft, Heart } from "lucide-react";
+import Link from "next/link";
+import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
 
-export default function AssetDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default function AssetDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = use(params);
-  const details = weddingInvitationDetails.find(item => item.id === Number(resolvedParams.id));
+  const details = weddingInvitationDetails.find(
+    (item) => item.id === Number(resolvedParams.id)
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const videoRef = useRef<HTMLIFrameElement>(null);
   const downloadRef = useRef<HTMLAnchorElement>(null);
   const [showToast, setShowToast] = useState(false);
-  
+
   if (!details) {
     notFound();
   }
@@ -26,9 +32,15 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
-        videoRef.current.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        videoRef.current.contentWindow?.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          "*"
+        );
       } else {
-        videoRef.current.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        videoRef.current.contentWindow?.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          "*"
+        );
       }
       setIsPlaying(!isPlaying);
     }
@@ -40,17 +52,30 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
       <nav className="sticky top-0 z-50 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] backdrop-blur-md border-b border-purple-900/40 h-16 shadow-2xl">
         <div className="container mx-auto px-4 py-3 h-16 flex items-center">
           <div className="flex items-center justify-between w-full">
-            <Link href="/" className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+            >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Assets</span>
             </Link>
             <div className="flex items-center gap-4">
-              <button 
+              <button
                 onClick={() => setIsLiked(!isLiked)}
-                className={clsx('p-2 transition-colors rounded-full focus:outline-none focus:ring-2 focus:ring-pink-300', isLiked ? 'text-pink-500 bg-pink-50' : 'text-gray-600 hover:text-pink-500')}
+                className={clsx(
+                  "p-2 transition-colors rounded-full focus:outline-none focus:ring-2 focus:ring-pink-300",
+                  isLiked
+                    ? "text-pink-500 bg-pink-50"
+                    : "text-gray-600 hover:text-pink-500"
+                )}
                 aria-label="Like this asset"
               >
-                <Heart className={clsx('w-5 h-5 transition-all', isLiked ? 'fill-current scale-110' : '')} />
+                <Heart
+                  className={clsx(
+                    "w-5 h-5 transition-all",
+                    isLiked ? "fill-current scale-110" : ""
+                  )}
+                />
               </button>
             </div>
           </div>
@@ -59,7 +84,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
 
       <div className="container mx-auto px-2 sm:px-4 py-8 pt-20">
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-        
+
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-8 items-stretch justify-center">
           {/* Left Column - Media */}
@@ -78,7 +103,10 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl pointer-events-none transition-all duration-500 group-hover:from-pink-500/40 group-hover:via-indigo-500/10 group-hover:to-transparent" />
                   <iframe
                     ref={videoRef}
-                    src={`${details.videoUrl.replace('shorts/', 'embed/')}?enablejsapi=1`}
+                    src={`${details.videoUrl.replace(
+                      "shorts/",
+                      "embed/"
+                    )}?enablejsapi=1`}
                     className="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300 rounded-2xl"
                     style={{ opacity: isPlaying ? 1 : 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -86,15 +114,20 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                   />
                   <button
                     onClick={togglePlay}
-                    className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 focus:outline-none"
-                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
+                    className={clsx(
+                      "absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 focus:outline-none",
+                      isPlaying
+                        ? "opacity-0 group-hover:opacity-100"
+                        : "opacity-100"
+                    )}
+                    aria-label={isPlaying ? "Pause video" : "Play video"}
                     tabIndex={0}
                   >
-                    <span className="animate-bounce">
+                    <span className="">
                       {isPlaying ? (
-                        <Pause className="w-20 h-20 text-white drop-shadow-lg" />
+                        <Pause className="w-10 h-10 text-white drop-shadow-lg" />
                       ) : (
-                        <Play className="w-20 h-20 text-white drop-shadow-lg" />
+                        <Play className="w-10 h-10 text-white drop-shadow-lg" />
                       )}
                     </span>
                   </button>
@@ -106,20 +139,30 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
           {/* Right Column - Details */}
           <div className="w-full lg:w-1/3 flex flex-col justify-center">
             <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-8 flex flex-col items-center text-center gap-6 h-full justify-center">
-              <h1 className="text-3xl font-extrabold mb-2 text-white leading-tight drop-shadow-lg">{details.title}</h1>
+              <h1 className="text-3xl font-extrabold mb-2 text-white leading-tight drop-shadow-lg">
+                {details.title}
+              </h1>
               <div className="flex flex-wrap font-bold items-center justify-center gap-3 mb-2">
-                <p>Every Purchase Inspires us to create more and sgare even better projects with you</p>
-                <p>Your support means everything, thank you for being part of our journey</p>
+                <p>
+                  Every Purchase Inspires us to create more and sgare even
+                  better projects with you
+                </p>
+                <p>
+                  Your support means everything, thank you for being part of our
+                  journey
+                </p>
               </div>
               {details.price && (
                 <div className="mb-2 w-full flex flex-col items-center">
                   <div className="flex items-center justify-center mb-4 w-full">
-                    <span className="text-4xl font-bold text-white drop-shadow">₹{details.price.toLocaleString('en-IN')}</span>
+                    <span className="text-4xl font-bold text-white drop-shadow">
+                      ₹{details.price.toLocaleString("en-IN")}
+                    </span>
                   </div>
-                  <RazorpayCheckoutButton 
-                    amount={details.price} 
-                    assetId={details.id.toString()} 
-                    title={details.title} 
+                  <RazorpayCheckoutButton
+                    amount={details.price}
+                    assetId={details.id.toString()}
+                    title={details.title}
                     onPaymentSuccess={() => {
                       setShowToast(true);
                       if (downloadRef.current) {
@@ -133,7 +176,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                     href={details.downloadUrl}
                     download
                     ref={downloadRef}
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                   />
                 </div>
               )}
@@ -143,13 +186,17 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
 
         {/* Description Section */}
         <div className="mt-8 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6">
-          
           {details.features && details.features.length > 0 && (
             <div>
-              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">Project Features</h2>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">
+                Project Features
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {details.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg"
+                  >
                     <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
                     <span className="text-white text-base">{feature}</span>
                   </div>
@@ -163,14 +210,25 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
           <span>Payment successful! Downloading your file..</span>
         </div>
       )}
 
       {/* Fixed Contact Card with Icons */}
-        <FixedContact />
-
+      <FixedContact />
     </div>
   );
-} 
+}
