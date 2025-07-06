@@ -41,10 +41,10 @@ export default function AssetCard({
         />
       </div>
 
-      <div className="bg-[#7A5FFF] flex items-center justify-between px-4 py-3 text-white">
+      <div className="bg-[#7A5FFF] flex items-center justify-between px-4 py-4 text-white">
         <div>
-          <p className="text-md font-medium">{title}</p>
-          <p className="text-md font-semibold">₹{price}</p>
+          <p className="text-lg font-medium">{title}</p>
+          <p className="text-lg font-semibold">₹{price}</p>
         </div>
         <button
           onClick={(e) => {

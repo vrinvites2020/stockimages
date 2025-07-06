@@ -153,7 +153,7 @@ export default function AssetDetailPage({
               </h1>
               <div className="flex flex-wrap font-bold items-center justify-center gap-3 mb-2">
                 <p>
-                  Every Purchase Inspires us to create more and sgare even
+                  Every Purchase Inspires us to create more and share even
                   better projects with you
                 </p>
                 <p>
