@@ -44,7 +44,7 @@ export default function AssetCard({
       <div className="bg-[#7A5FFF] flex items-center justify-between px-4 py-4 text-white">
         <div>
           <p className="text-lg font-medium">{title}</p>
-          <p className="text-lg font-semibold">₹{price}</p>
+          <p className="text-xl font-semibold">₹{price}</p>
         </div>
         <button
           onClick={(e) => {

@@ -1,29 +1,14 @@
 /**
- * Base features array for wedding invitation templates
- * Contains common features that apply to all templates
- */
-const baseFeatures = [
-  "Complete Pre Rendered Elements",
-  "Video Help File Included",
-  "Works in Adobe Premiere Pro CC 2015 and Above",
-  "Video Orientation is Vertical",
-  "Well Organized and Easy to Use",
-  "No Plugins Required",
-  "Very Easy to Customize",
-  "Placeholders Formats - PSD, JPG, PNG",
-];
-
-/**
  * Wedding invitation template data
  * Contains detailed information about available wedding invitation templates
  * Each template includes media assets, pricing, and download information
  */
 export const weddingInvitationDetails = [{
     id: 1,
-    imageUrl: "/assetcard/project_001.jpg",
+    imageUrl: "/assetcard/Project_001.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 105 MB"],
+    features: ["Project Size 105 MB"],
     price: 499,
     language: "Hindi",
     category: "Wedding",
@@ -31,10 +16,10 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 2,
-    imageUrl: "/assetcard/project_002.jpg",
+    imageUrl: "/assetcard/Project_002.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 112 MB"],
+    features: ["Project Size 112 MB"],
     price: 499,
     language: "English",
     category: "Wedding",
@@ -42,10 +27,10 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 3,
-    imageUrl: "/assetcard/project_003.jpg",
+    imageUrl: "/assetcard/Project_003.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 144 MB"],
+    features: ["Project Size 144 MB"],
     price: 499,
     language: "Telugu",
     category: "Wedding",
@@ -53,10 +38,10 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 4,
-    imageUrl: "/assetcard/project_004.jpg",
+    imageUrl: "/assetcard/Project_004.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 173 MB"],
+    features: ["Project Size 173 MB"],
     price: 499,
     language: "Telugu",
     category: "Wedding",
@@ -64,10 +49,10 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 5,
-    imageUrl: "/assetcard/project_005.jpg",
+    imageUrl: "/assetcard/Project_005.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 225 MB"],
+    features: ["Project Size 225 MB"],
     price: 499,
     language: "Telugu",
     category: "Wedding",
@@ -75,10 +60,10 @@ export const weddingInvitationDetails = [{
   },
   {
     id: 6,
-    imageUrl: "/assetcard/project_006.jpg",
+    imageUrl: "/assetcard/Project_006.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
-    features: [...baseFeatures, "Project Size 140 MB"],
+    features: ["Project Size 140 MB"],
     price: 499,
     language: "Telugu",
     category: "Wedding",
@@ -92,7 +77,7 @@ export const weddingInvitationDetails = [{
  * @returns Array of features with the specified project size
  */
 export const createFeatures = (projectSize: string): string[] => {
-  return [...baseFeatures, `Project Size ${projectSize}`];
+  return [`Project Size ${projectSize}`];
 };
 
   

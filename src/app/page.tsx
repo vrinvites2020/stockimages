@@ -10,6 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import RecentDownloads from "@/components/RecentDownloads";
 import FinalBanner from "@/components/FinalBanner";
 import FixedContact from "@/components/FixedContact";
+import UserForm from "@/components/UserFormModal";
+import { useUserFormModal } from "@/hooks/useUserFormModal";
 
 /**
  * Asset type definition for the main page
@@ -53,6 +55,7 @@ function useHasMounted() {
 export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
   const hasMounted = useHasMounted();
+  const { isModalOpen, closeModal } = useUserFormModal();
 
   /**
    * Handles category selection from carousel or tabs
@@ -145,6 +148,16 @@ export default function Home() {
         {/* Fixed Contact Card with Icons */}
         <FixedContact />
       </div>
+
+      {/* User Form Modal */}
+      <UserForm 
+        isModal={true}
+        isOpen={isModalOpen} 
+        onClose={closeModal}
+        onSuccess={() => {
+          console.log('User form submitted successfully');
+        }}
+      />
     </>
   );
 }

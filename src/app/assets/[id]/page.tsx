@@ -195,24 +195,57 @@ export default function AssetDetailPage({
 
         {/* Description Section */}
         <div className="mt-8 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-6">
-          {details.features && details.features.length > 0 && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">
-                Project Features
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {details.features.map((feature, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                    <span className="text-white text-base">{feature}</span>
-                  </div>
-                ))}
+          <div>
+            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">
+              Project Features
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Base features - common for all projects */}
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Complete Pre Rendered Elements</span>
               </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Video Help File Included</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Works in Adobe Premiere Pro CC 2015 and Above</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Video Orientation is Vertical</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Well Organized and Easy to Use</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">No Plugins Required</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Very Easy to Customize</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                <span className="text-white text-base">Placeholders Formats - PSD, JPG, PNG</span>
+              </div>
+              
+              {/* Dynamic features from data */}
+              {details.features && details.features.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg"
+                >
+                  <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                  <span className="text-white text-base">{feature}</span>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
