@@ -2,6 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/**
+ * Mock data for recent downloads
+ * Contains user information with names, locations, and profile images
+ */
 const recentDownloads = [
   { name: "Tanvi", place: "Chennai", image: "/images/girl10.jpg" },
   { name: "Aditya", place: "Bengaluru", image: "/images/boy12.jpg" },
@@ -27,12 +31,21 @@ const recentDownloads = [
   { name: "Sai Kiran", place: "Mahbubnagar", image: "/images/boy5.jpg" },
 ];
 
+/**
+ * RecentDownloads component
+ * Displays recent user downloads in an infinite scrolling carousel
+ * Features animated user profiles and service highlights
+ */
 export default function RecentDownloads() {
   const [trackWidth, setTrackWidth] = useState(0);
   const originalSetRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationDuration = 40; // seconds
 
+  /**
+   * Updates track width for responsive animation
+   * Uses ResizeObserver to handle dynamic width changes
+   */
   useEffect(() => {
     const updateTrackWidth = () => {
       if (originalSetRef.current) {
@@ -52,7 +65,10 @@ export default function RecentDownloads() {
     };
   }, []);
 
-  // Animation variants for framer-motion
+  /**
+   * Animation variants for framer-motion
+   * Defines entrance animations for user cards
+   */
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {

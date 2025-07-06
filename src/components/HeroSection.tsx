@@ -4,6 +4,9 @@ import React from 'react';
 import SearchBar from '@/components/SearchBar';
 import { weddingInvitationDetails } from '@/data/constant';
 
+/**
+ * Asset type definition for filtering and display
+ */
 type Asset = {
   id: number;
   title: string;
@@ -13,6 +16,9 @@ type Asset = {
   imageUrl: string;
 }
 
+/**
+ * Convert wedding invitation details to Asset format
+ */
 const assets: Asset[] = weddingInvitationDetails.map(item => ({
   id: item.id,
   title: item.title,
@@ -22,12 +28,23 @@ const assets: Asset[] = weddingInvitationDetails.map(item => ({
   imageUrl: item.imageUrl
 }));
 
+/**
+ * Props interface for HeroSection component
+ */
 interface HeroSectionProps {
-  filteredAssets: Asset[];
-  setFilteredAssets: (assets: Asset[]) => void;
+  filteredAssets: Asset[];                    // Currently filtered assets
+  setFilteredAssets: (assets: Asset[]) => void;  // Function to update filtered assets
 }
 
+/**
+ * HeroSection component
+ * Main landing section with search functionality and asset filtering
+ * Features animated background elements and responsive design
+ */
 const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) => {
+  /**
+   * Handles search query filtering by asset title
+   */
   const handleSearch = (query: string) => {
     const filtered = assets.filter(asset => 
       asset.title.toLowerCase().includes(query.toLowerCase())
@@ -35,6 +52,9 @@ const HeroSection = ({ filteredAssets, setFilteredAssets }: HeroSectionProps) =>
     setFilteredAssets(filtered);
   };
 
+  /**
+   * Handles filtering by category, language, and sorting options
+   */
   const handleFilterChange = (category: string, language: string, sortBy: string) => {
     let filtered: Asset[] = [...assets];
     if (category !== 'all') {

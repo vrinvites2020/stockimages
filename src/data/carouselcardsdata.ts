@@ -1,10 +1,18 @@
+/**
+ * Interface for carousel card data structure
+ * Defines the properties for individual carousel items
+ */
 export interface CarouselCard {
-  id: number;
-  title: string;
-  category: string;
-  imageUrl: string;
+  id: number;           // Unique identifier for the card
+  title: string;        // Display title for the card
+  category: string;     // Category classification
+  imageUrl: string;     // Path to the card's image
 }
 
+/**
+ * Carousel cards data array
+ * Contains wedding celebration category cards for the carousel component
+ */
 export const carouselCardsData: CarouselCard[] = [
   {
     id: 1,

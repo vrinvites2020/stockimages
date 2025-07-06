@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import Script from 'next/script';
 
+/**
+ * Props interface for RazorpayCheckoutButton component
+ */
 interface RazorpayCheckoutButtonProps {
-  amount: number; // in rupees
-  assetId: string;
-  title: string;
-  onPaymentSuccess?: () => void;
+  amount: number;        // Payment amount in rupees
+  assetId: string;       // Unique identifier for the asset being purchased
+  title: string;         // Asset title for payment description
+  onPaymentSuccess?: () => void;  // Callback function after successful payment
 }
 
+/**
+ * RazorpayCheckoutButton component
+ * Handles payment processing through Razorpay gateway
+ * Creates orders on backend and opens Razorpay checkout modal
+ */
 export default function RazorpayCheckoutButton({ amount, assetId, title, onPaymentSuccess }: RazorpayCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Initiates payment process
+   * Creates order on backend and opens Razorpay checkout
+   */
   const handlePayment = async () => {
     setLoading(true);
     try {

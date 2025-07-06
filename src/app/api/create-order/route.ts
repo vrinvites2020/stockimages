@@ -1,11 +1,20 @@
 import Razorpay from 'razorpay';
 import { NextRequest, NextResponse } from 'next/server';
 
+/**
+ * Razorpay instance configuration
+ * Uses environment variables for API credentials
+ */
 const razorpay = new Razorpay({
     key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
     key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET as string,
 });
 
+/**
+ * POST handler for creating Razorpay orders
+ * Converts amount to paise and creates order with asset details
+ * Returns order details for frontend payment processing
+ */
 export async function POST(req: NextRequest) {
   try {
     const { amount, assetId, title } = await req.json();

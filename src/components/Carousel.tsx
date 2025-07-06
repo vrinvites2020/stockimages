@@ -2,11 +2,22 @@ import React, { useState, useMemo, useRef } from 'react';
 import CarouselCard from './CarouselCard';
 import { carouselCardsData } from '../data/carouselcardsdata';
 
+/**
+ * Props interface for Carousel component
+ */
 interface CarouselProps {
-  onCategorySelect: (category: string) => void;
+  onCategorySelect: (category: string) => void;  // Callback when category is selected
 }
 
+/**
+ * Carousel component
+ * Displays upcoming projects in an infinite scrolling carousel
+ * Features hover effects, click animations, and automatic scrolling
+ */
 const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
+  /**
+   * Create infinite scroll effect by repeating the data three times
+   */
   const displayAssets = useMemo(() => {
     return [...carouselCardsData, ...carouselCardsData, ...carouselCardsData];
   }, []);
@@ -15,7 +26,10 @@ const Carousel: React.FC<CarouselProps> = ({ onCategorySelect }) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  // Handle card click
+  /**
+   * Handles card click with ripple animation effect
+   * Updates selected index and triggers category selection
+   */
   const handleCardClick = (idx: number, category: string, e: React.MouseEvent<HTMLDivElement>) => {
     setSelectedIdx(idx);
     onCategorySelect(category);

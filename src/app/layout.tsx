@@ -4,8 +4,17 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Navbar from '@/components/Navbar';
+
+/**
+ * Inter font configuration for consistent typography
+ */
 const inter = Inter({ subsets: ['latin'] });
 
+/**
+ * Root layout component
+ * Provides the main HTML structure with authentication and navigation
+ * Wraps all pages with ClerkProvider for user authentication
+ */
 export default function RootLayout({
   children,
 }: {

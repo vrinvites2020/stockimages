@@ -1,15 +1,23 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+/**
+ * Props interface for AssetCard component
+ */
 interface AssetCardProps {
-  id: number;
-  title: string;
-  category: string;
-  language: string;
-  price: number;
-  imageUrl: string;
+  id: number;           // Unique identifier for the asset
+  title: string;        // Display title of the asset
+  category: string;     // Category classification
+  language: string;     // Language of the asset
+  price: number;        // Price in rupees
+  imageUrl: string;     // URL of the asset's preview image
 }
 
+/**
+ * AssetCard component
+ * Displays a card for individual assets with image, title, price, and download button
+ * Handles navigation to asset detail page on click
+ */
 export default function AssetCard({
   id,
   title,

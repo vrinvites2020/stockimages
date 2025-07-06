@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 
+/**
+ * VideoPlayer component
+ * Displays two video players with automatic playback
+ * Loads videos from public/videos directory and handles cleanup on unmount
+ */
 const VideoPlayer = () => {
   const videoRef1 = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
@@ -10,6 +15,10 @@ const VideoPlayer = () => {
     const video1 = videoRef1.current;
     const video2 = videoRef2.current;
 
+    /**
+     * Initialize and play both videos concurrently
+     * Sets video sources and starts playback
+     */
     const initializeVideos = async () => {
       try {
         if (video1 && video2) {

@@ -2,6 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faTelegram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
+/**
+ * FixedContact component
+ * Displays a fixed contact card with social media links
+ * Positioned at bottom-right corner with hover animations
+ */
 const FixedContact = () => {
   return (<>
          {/* Fixed Contact Card with Icons */}

@@ -1,16 +1,24 @@
 import React from 'react';
 import Image from 'next/image';
 
+/**
+ * Props interface for CarouselCard component
+ */
 interface CarouselCardProps {
-  category: string;
-  imageUrl: string;
-  isSelected?: boolean;
-  isHovered?: boolean;
-  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  category: string;     // Category name for the card
+  imageUrl: string;     // URL of the card's image
+  isSelected?: boolean; // Whether the card is currently selected
+  isHovered?: boolean;  // Whether the card is being hovered
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;  // Click handler
+  onMouseEnter: () => void;  // Mouse enter handler
+  onMouseLeave: () => void;  // Mouse leave handler
 }
 
+/**
+ * CarouselCard component
+ * Displays an interactive card for carousel navigation
+ * Features hover animations, scaling effects, and gradient overlays
+ */
 const CarouselCard: React.FC<CarouselCardProps> = ({
   category,
   imageUrl,

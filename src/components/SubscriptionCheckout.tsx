@@ -2,18 +2,29 @@ import { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import Razorpay from 'razorpay';
 
+/**
+ * Global window interface extension for Razorpay
+ */
 declare global {
   interface Window {
     Razorpay: new (options: Razorpay.Options) => Razorpay.RazorpayInstance;
   }
 }
 
+/**
+ * Props interface for SubscriptionCheckout component
+ */
 interface SubscriptionCheckoutProps {
-  planId: string;
-  onSuccess?: (subscriptionId: string) => void;
-  onError?: (error: Error) => void;
+  planId: string;        // Subscription plan identifier
+  onSuccess?: (subscriptionId: string) => void;  // Success callback
+  onError?: (error: Error) => void;              // Error callback
 }
 
+/**
+ * SubscriptionCheckout component
+ * Handles subscription creation and payment through Razorpay
+ * Integrates with Clerk for user authentication
+ */
 export default function SubscriptionCheckout({
   planId,
   onSuccess,
@@ -22,6 +33,10 @@ export default function SubscriptionCheckout({
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Initiates subscription process
+   * Creates subscription on backend and opens Razorpay checkout
+   */
   const startSubscription = async () => {
     try {
       setLoading(true);

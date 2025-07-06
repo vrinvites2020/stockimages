@@ -11,6 +11,9 @@ import RecentDownloads from "@/components/RecentDownloads";
 import FinalBanner from "@/components/FinalBanner";
 import FixedContact from "@/components/FixedContact";
 
+/**
+ * Asset type definition for the main page
+ */
 type Asset = {
   id: number;
   title: string;
@@ -20,6 +23,9 @@ type Asset = {
   imageUrl: string;
 };
 
+/**
+ * Convert wedding invitation details to Asset format for display
+ */
 const assets: Asset[] = weddingInvitationDetails.map((item) => ({
   id: item.id,
   title: item.title,
@@ -29,17 +35,29 @@ const assets: Asset[] = weddingInvitationDetails.map((item) => ({
   imageUrl: item.imageUrl,
 }));
 
+/**
+ * Custom hook to handle client-side mounting
+ * Prevents hydration mismatch by ensuring component is mounted
+ */
 function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => setHasMounted(true), []);
   return hasMounted;
 }
 
+/**
+ * Home page component
+ * Main landing page with search, filtering, and asset display
+ * Features multiple sections including hero, assets grid, video player, and carousel
+ */
 export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
   const hasMounted = useHasMounted();
 
-  // When a category is selected from the carousel or tabs
+  /**
+   * Handles category selection from carousel or tabs
+   * Filters assets based on selected category
+   */
   const handleCategorySelect = (category: string) => {
     const filtered =
       category === "all"

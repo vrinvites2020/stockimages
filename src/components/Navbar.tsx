@@ -7,6 +7,12 @@ import {
   SignedOut
 } from "@clerk/nextjs";
 import { PhoneIcon } from "lucide-react";
+
+/**
+ * Navbar component
+ * Main navigation bar with logo, contact information, and authentication
+ * Uses Clerk for user authentication and sign-in/sign-out functionality
+ */
 const Navbar = () => {
   return (
     <nav className="w-full sticky top-0 z-50 bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] text-white shadow-2xl border-b border-purple-900/40">

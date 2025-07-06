@@ -1,34 +1,54 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
+/**
+ * Props interface for SearchBar component
+ */
 interface SearchBarProps {
-  onSearch: (query: string) => void
-  onFilterChange: (category: string, language: string, sortBy: string) => void
-  resultsCount?: number
+  onSearch: (query: string) => void;  // Search query handler
+  onFilterChange: (category: string, language: string, sortBy: string) => void;  // Filter change handler
+  resultsCount?: number;  // Number of search results
 }
 
+/**
+ * SearchBar component
+ * Provides search functionality with category, language, and sorting filters
+ * Features animated UI elements and responsive design
+ */
 export default function SearchBar({ onSearch, onFilterChange }: SearchBarProps) {
   const [category, setCategory] = useState('all')
   const [language, setLanguage] = useState('all')
   const [sortBy, setSortBy] = useState('newest')
   const [isExpanded, setIsExpanded] = useState(false)
 
+  /**
+   * Handles search input changes
+   */
   const handleSearch = (query: string) => {
     onSearch(query)
   }
 
+  /**
+   * Handles category filter changes
+   */
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCategory = e.target.value
     setCategory(newCategory)
     onFilterChange(newCategory, language, sortBy)
   }
 
+  /**
+   * Handles language filter changes
+   */
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = e.target.value
     setLanguage(newLanguage)
     onFilterChange(category, newLanguage, sortBy)
   }
 
+  /**
+   * Handles sorting option changes
+   */
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newSort = e.target.value
     setSortBy(newSort)

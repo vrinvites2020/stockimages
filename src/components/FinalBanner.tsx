@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+/**
+ * FinalBanner component
+ * Displays a decorative banner at the bottom of the page
+ * Uses gradient background and contains a promotional image
+ */
 export default function FinalBanner() {
   return (
     <section className="relative w-full flex flex-col items-center justify-center py-16 bg-gradient-to-b from-[#0d0820] to-[#1a1530] overflow-hidden">

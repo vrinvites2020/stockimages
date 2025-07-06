@@ -1,10 +1,15 @@
+/**
+ * Wedding invitation template data
+ * Contains detailed information about available wedding invitation templates
+ * Each template includes media assets, pricing, and download information
+ */
 export const weddingInvitationDetails = [{
     id: 1,
     imageUrl: "/assetcard/poster1.jpg",
     videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
     title: "Traditional Wedding Invitation",
     summary: `Download VR Visual Magics Wedding Invitations Templates and enjoy the best experience where you will find what you needed and what you searched for Our site provides templates for Complete Premiere Pro Projects and no need to use After Effects`,
-    usage: "This template is a short and beautiful wedding invitation. Create Magics for your clients invitations on their special day",
+    usage: "This template is a short and beautiful wedding invitation. Create Magics for your clients invitations on their special day",
     features: [
       "Adobe Premiere Pro CC 2015 and above. No need After Effects",
       "No Plugins Required",
@@ -14,7 +19,7 @@ export const weddingInvitationDetails = [{
       "Total Scenes 11",
       "Each scene is 8 second Duration (you can use any audio dutation editable with 8 sec)",
       "Placeholders Formats - PSD, JPG, PNG",
-      "Project Size 540 MB",
+      "Project Size 540 MB",
     ],
     price: 499,
     language: "Hindi",

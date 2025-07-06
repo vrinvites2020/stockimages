@@ -10,6 +10,11 @@ import Link from "next/link";
 import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
 
+/**
+ * Asset detail page component
+ * Displays detailed information about a specific asset with video player and payment options
+ * Features like functionality, video controls, and automatic download after payment
+ */
 export default function AssetDetailPage({
   params,
 }: {
@@ -29,6 +34,10 @@ export default function AssetDetailPage({
     notFound();
   }
 
+  /**
+   * Toggles video play/pause state
+   * Sends commands to YouTube iframe API for video control
+   */
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
