@@ -44,7 +44,7 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, onPayme
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
         amount: data.amount, // in paise
         currency: data.currency,
-        name: 'Wedding Photography Assets',
+        name: 'VR Visual Magics',
         description: title,
         order_id: data.id,
         handler: function () {
