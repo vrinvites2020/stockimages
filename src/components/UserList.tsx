@@ -5,9 +5,14 @@ import { UserService, User } from '@/lib/firestore';
 
 // Admin credentials - only these users can access the admin panel
 const ADMIN_CREDENTIALS = [
-  { email: 'vrinvites2020@gmail.com', password: 'manaswini@3951' },
-  { email: 'vignesh.t3004@gmail.com', password: 'vignesh@1234' },
-  // Add more admin credentials here
+  { 
+    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_1!, 
+    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_1! 
+  },
+  { 
+    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL_2!, 
+    password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD_2! 
+  },
 ];
 
 // Pagination settings
