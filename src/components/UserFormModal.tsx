@@ -69,7 +69,7 @@ export default function UserForm({ isModal = false, isOpen = true, onClose, onSu
       if (isModal && onClose) {
         setTimeout(() => {
           onClose();
-        }, 3000);
+        }, 2000);
       }
       
     } catch (error) {
