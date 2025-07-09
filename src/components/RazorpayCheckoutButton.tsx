@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Script from 'next/script';
 
 /**
@@ -9,6 +9,9 @@ interface RazorpayCheckoutButtonProps {
   assetId: string;       // Unique identifier for the asset being purchased
   title: string;         // Asset title for payment description
   onPaymentSuccess?: () => void;  // Callback function after successful payment
+  triggerPayment?: boolean; // If true, triggers payment programmatically
+  onTriggerHandled?: () => void; // Called after payment is triggered
+  hideButton?: boolean; // If true, hides the default button
 }
 
 /**
@@ -16,7 +19,7 @@ interface RazorpayCheckoutButtonProps {
  * Handles payment processing through Razorpay gateway
  * Creates orders on backend and opens Razorpay checkout modal
  */
-export default function RazorpayCheckoutButton({ amount, assetId, title, onPaymentSuccess }: RazorpayCheckoutButtonProps) {
+export default function RazorpayCheckoutButton({ amount, assetId, title, onPaymentSuccess, triggerPayment, onTriggerHandled, hideButton }: RazorpayCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   /**
@@ -67,16 +70,28 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, onPayme
     }
   };
 
+  // Effect to trigger payment programmatically
+  useEffect(() => {
+    if (triggerPayment) {
+      handlePayment().finally(() => {
+        if (onTriggerHandled) onTriggerHandled();
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [triggerPayment]);
+
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-      <button
-        onClick={handlePayment}
-        disabled={loading}
-        className={`btn-primary px-6 py-2 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-      >
-        {loading ? 'Processing...' : 'Buy Now'}
-      </button>
+      {!hideButton && (
+        <button
+          onClick={handlePayment}
+          disabled={loading}
+          className={`btn-primary px-6 py-2 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          {loading ? 'Processing...' : 'Buy Now'}
+        </button>
+      )}
     </>
   );
 } 

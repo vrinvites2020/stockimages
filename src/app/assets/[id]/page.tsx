@@ -9,6 +9,7 @@ import { Play, Pause, ArrowLeft, Heart } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
+import PurchaseTermsModal from "@/components/PurchaseTermsModal";
 
 /**
  * Asset detail page component
@@ -29,6 +30,10 @@ export default function AssetDetailPage({
   const videoRef = useRef<HTMLIFrameElement>(null);
   const downloadRef = useRef<HTMLAnchorElement>(null);
   const [showToast, setShowToast] = useState(false);
+  // Modal state
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [triggerPayment, setTriggerPayment] = useState(false);
 
   if (!details) {
     notFound();
@@ -179,7 +184,18 @@ export default function AssetDetailPage({
                       }
                       setTimeout(() => setShowToast(false), 2500);
                     }}
+                    // Only trigger payment if triggerPayment is true
+                    triggerPayment={triggerPayment}
+                    onTriggerHandled={() => setTriggerPayment(false)}
+                    // Hide the default button, we will show our own
+                    hideButton
                   />
+                  <button
+                    className="w-full py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg hover:from-pink-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-pink-300"
+                    onClick={() => setShowTermsModal(true)}
+                  >
+                    Buy Now
+                  </button>
                   {/* Hidden anchor for programmatic download */}
                   <a
                     href={details.downloadUrl}
@@ -268,6 +284,22 @@ export default function AssetDetailPage({
           <span>Payment successful! Downloading your file..</span>
         </div>
       )}
+
+      {/* Purchase Terms Modal */}
+      <PurchaseTermsModal
+        open={showTermsModal}
+        onClose={() => {
+          setShowTermsModal(false);
+          setTermsChecked(false);
+        }}
+        onAccept={() => {
+          setShowTermsModal(false);
+          setTermsChecked(false);
+          setTimeout(() => setTriggerPayment(true), 100); // trigger Razorpay
+        }}
+        checked={termsChecked}
+        onCheck={setTermsChecked}
+      />
 
       {/* Fixed Contact Card with Icons */}
       <FixedContact />
