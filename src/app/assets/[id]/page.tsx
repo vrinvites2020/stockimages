@@ -11,6 +11,31 @@ import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
 import PurchaseTermsModal from "@/components/PurchaseTermsModal";
 
+// Utility function to convert any YouTube URL to an embed URL
+function getYouTubeEmbedUrl(url: string): string {
+  // Handle youtu.be short links
+  const shortMatch = url.match(/^https?:\/\/youtu\.be\/([^?&]+)/);
+  if (shortMatch) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}?enablejsapi=1`;
+  }
+  // Handle standard YouTube links (watch?v=)
+  const longMatch = url.match(/[?&]v=([^?&]+)/);
+  if (longMatch) {
+    return `https://www.youtube.com/embed/${longMatch[1]}?enablejsapi=1`;
+  }
+  // Handle shorts links
+  const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
+  if (shortsMatch) {
+    return `https://www.youtube.com/embed/${shortsMatch[1]}?enablejsapi=1`;
+  }
+  // Handle /embed/ links directly
+  if (url.includes("/embed/")) {
+    return url.includes("enablejsapi=1") ? url : url + "?enablejsapi=1";
+  }
+  // Fallback: return original
+  return url;
+}
+
 /**
  * Asset detail page component
  * Displays detailed information about a specific asset with video player and payment options
@@ -117,10 +142,7 @@ export default function AssetDetailPage({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl pointer-events-none transition-all duration-500 group-hover:from-pink-500/40 group-hover:via-indigo-500/10 group-hover:to-transparent" />
                   <iframe
                     ref={videoRef}
-                    src={`${details.videoUrl.replace(
-                      "shorts/",
-                      "embed/"
-                    )}?enablejsapi=1`}
+                    src={getYouTubeEmbedUrl(details.videoUrl)}
                     className="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300 rounded-2xl"
                     style={{ opacity: isPlaying ? 1 : 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

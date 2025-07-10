@@ -6,7 +6,7 @@
 export const weddingInvitationDetails = [{
     id: 1,
     imageUrl: "/assetcard/Project_001.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/HefxBttRjCw?si=GZfvGBabGcwjRnXb",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 105 MB"],
     price: 499,
@@ -17,7 +17,7 @@ export const weddingInvitationDetails = [{
   {
     id: 2,
     imageUrl: "/assetcard/Project_002.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/9JEF1i2jrkk?si=VO3uRPGw94MbEYcS",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 112 MB"],
     price: 499,
@@ -28,7 +28,7 @@ export const weddingInvitationDetails = [{
   {
     id: 3,
     imageUrl: "/assetcard/Project_003.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/pOQL0XYR3ks?si=SVlGxwZRdsKhOkRg",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 144 MB"],
     price: 499,
@@ -39,7 +39,7 @@ export const weddingInvitationDetails = [{
   {
     id: 4,
     imageUrl: "/assetcard/Project_004.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/dnl6gJUWm_A?si=Pyb9ISBUv_b1Ovbb",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 173 MB"],
     price: 499,
@@ -50,7 +50,7 @@ export const weddingInvitationDetails = [{
   {
     id: 5,
     imageUrl: "/assetcard/Project_005.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/0a3jqhgGwNc?si=HYcqG0KAfO-NLHyf",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 225 MB"],
     price: 499,
@@ -61,7 +61,7 @@ export const weddingInvitationDetails = [{
   {
     id: 6,
     imageUrl: "/assetcard/Project_006.jpg",
-    videoUrl: "https://www.youtube.com/shorts/6ImfFWCIsBo",
+    videoUrl: "https://youtu.be/HpdAzQ23AFc?si=RnTgLpWudnYNSl-N",
     title: "Traditional Wedding Invitation",
     features: ["Project Size 140 MB"],
     price: 499,
