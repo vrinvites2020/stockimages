@@ -70,21 +70,23 @@ export default function PurchaseTermsModal({
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 w-full max-w-lg mx-4 p-6 relative animate-fade-in">
-        <button
-          className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl font-bold focus:outline-none"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <h2 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">
-          Purchase Terms & Conditions
-        </h2>
-        <div className="max-h-72 overflow-y-auto pr-2 mb-4 text-sm sm:text-base text-white space-y-4">
+      <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 w-full max-w-lg md:max-w-2xl xl:max-w-4xl mx-4 p-4 sm:p-6 xl:p-10 relative animate-fade-in max-h-[90vh] flex flex-col">
+        <div className="flex-shrink-0">
+          <button
+            className="absolute top-5 right-10 text-gray-400 hover:text-white text-3xl font-extrabold focus:outline-none"
+            onClick={onClose}
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <h2 className="text-2xl sm:text-3xl xl:text-4xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 text-transparent bg-clip-text">
+            Purchase Terms & Conditions
+          </h2>
+        </div>
+        <div className="flex-1 overflow-y-auto pr-2 mb-4 text-sm sm:text-base xl:text-lg text-white space-y-4">
           {terms.map((section, idx) => (
             <div key={idx}>
-              <div className="font-semibold mb-1 text-pink-300">{section.title}</div>
+              <div className="font-semibold mb-1 text-pink-300 text-base sm:text-lg xl:text-xl">{section.title}</div>
               {section.content.length > 0 && (
                 <ul className="list-disc list-inside ml-2 space-y-1">
                   {section.content.map((line, i) => (
@@ -95,29 +97,31 @@ export default function PurchaseTermsModal({
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-2 mb-4">
-          <input
-            id="terms-checkbox"
-            type="checkbox"
-            checked={checked}
-            onChange={e => onCheck(e.target.checked)}
-            className="accent-pink-500 w-4 h-4"
-            required
-          />
-          <label htmlFor="terms-checkbox" className="text-white text-sm select-none">
-            I have read and agree to the Purchase Terms
-          </label>
+        <div className="flex-shrink-0">
+          <div className="flex items-center gap-2 mb-4">
+            <input
+              id="terms-checkbox"
+              type="checkbox"
+              checked={checked}
+              onChange={e => onCheck(e.target.checked)}
+              className="accent-pink-500 w-4 h-4"
+              required
+            />
+            <label htmlFor="terms-checkbox" className="text-white text-md select-none">
+              I have read and agree to the Purchase Terms
+            </label>
+          </div>
+          <button
+            className={clsx(
+              "w-full py-2 xl:py-3 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg",
+              !checked && "opacity-60 cursor-not-allowed"
+            )}
+            disabled={!checked}
+            onClick={onAccept}
+          >
+            Accept & Continue
+          </button>
         </div>
-        <button
-          className={clsx(
-            "w-full py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg",
-            !checked && "opacity-60 cursor-not-allowed"
-          )}
-          disabled={!checked}
-          onClick={onAccept}
-        >
-          Accept & Continue
-        </button>
       </div>
     </div>
   );
