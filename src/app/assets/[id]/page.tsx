@@ -11,26 +11,29 @@ import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
 import PurchaseTermsModal from "@/components/PurchaseTermsModal";
 
-// Utility function to convert any YouTube URL to an embed URL
+// Utility function to convert any YouTube URL to an embed URL with highest available quality
 function getYouTubeEmbedUrl(url: string): string {
+  const baseParams = "enablejsapi=1&vq=hd2160&rel=0&modestbranding=1&showinfo=0";
+  
   // Handle youtu.be short links
   const shortMatch = url.match(/^https?:\/\/youtu\.be\/([^?&]+)/);
   if (shortMatch) {
-    return `https://www.youtube.com/embed/${shortMatch[1]}?enablejsapi=1`;
+    return `https://www.youtube.com/embed/${shortMatch[1]}?${baseParams}`;
   }
   // Handle standard YouTube links (watch?v=)
   const longMatch = url.match(/[?&]v=([^?&]+)/);
   if (longMatch) {
-    return `https://www.youtube.com/embed/${longMatch[1]}?enablejsapi=1`;
+    return `https://www.youtube.com/embed/${longMatch[1]}?${baseParams}`;
   }
   // Handle shorts links
   const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
   if (shortsMatch) {
-    return `https://www.youtube.com/embed/${shortsMatch[1]}?enablejsapi=1`;
+    return `https://www.youtube.com/embed/${shortsMatch[1]}?${baseParams}`;
   }
   // Handle /embed/ links directly
   if (url.includes("/embed/")) {
-    return url.includes("enablejsapi=1") ? url : url + "?enablejsapi=1";
+    const separator = url.includes("?") ? "&" : "?";
+    return url.includes("enablejsapi=1") ? url : url + separator + baseParams;
   }
   // Fallback: return original
   return url;
