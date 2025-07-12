@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://vrvisualmagics.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all pages to be indexed
+Allow: /assets/
+Allow: /auth/
+Allow: /userslist/
+
+# Disallow admin or private areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/ 

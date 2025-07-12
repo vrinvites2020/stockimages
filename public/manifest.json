@@ -1,0 +1,27 @@
+{
+  "name": "VR Visual Magics",
+  "short_name": "VR Visual",
+  "description": "Premium wedding invitation videos and templates",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18122B",
+  "theme_color": "#18122B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["entertainment", "lifestyle", "design"],
+  "lang": "en",
+  "dir": "ltr"
+} 
