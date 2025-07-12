@@ -10,7 +10,7 @@ export const weddingInvitationDetails = [{
     title: "Traditional Wedding Invitation",
     features: ["Project Size 105 MB"],
     price: 499,
-    language: "Hindi",
+    language: "English",
     category: "Wedding",
     downloadUrl: "https://pub-881ec584fade4d4a8ecd1deec859aeea.r2.dev/Vr%20Visual%20Magics%20Project%201.rar"
   },
@@ -32,7 +32,7 @@ export const weddingInvitationDetails = [{
     title: "Traditional Wedding Invitation",
     features: ["Project Size 144 MB"],
     price: 499,
-    language: "Telugu",
+    language: "English",
     category: "Wedding",
     downloadUrl: "https://pub-881ec584fade4d4a8ecd1deec859aeea.r2.dev/Vr%20Visual%20Magics%20Project%203.rar"
   },
@@ -43,7 +43,7 @@ export const weddingInvitationDetails = [{
     title: "Traditional Wedding Invitation",
     features: ["Project Size 173 MB"],
     price: 499,
-    language: "Telugu",
+    language: "English",
     category: "Wedding",
     downloadUrl: "https://pub-881ec584fade4d4a8ecd1deec859aeea.r2.dev/Vr%20Visual%20Magics%20Project%204.rar"
   },
@@ -54,7 +54,7 @@ export const weddingInvitationDetails = [{
     title: "Traditional Wedding Invitation",
     features: ["Project Size 225 MB"],
     price: 499,
-    language: "Telugu",
+    language: "English",
     category: "Wedding",
     downloadUrl: "https://pub-881ec584fade4d4a8ecd1deec859aeea.r2.dev/Vr%20Visual%20Magics%20Project%205.rar"
   },
@@ -65,7 +65,7 @@ export const weddingInvitationDetails = [{
     title: "Traditional Wedding Invitation",
     features: ["Project Size 140 MB"],
     price: 499,
-    language: "Telugu",
+    language: "English",
     category: "Wedding",
     downloadUrl: "https://pub-881ec584fade4d4a8ecd1deec859aeea.r2.dev/Vr%20Visual%20Magics%20Project%206.rar"
   },
