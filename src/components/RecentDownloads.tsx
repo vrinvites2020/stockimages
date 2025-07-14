@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
  */
 const recentDownloads = [
   { name: "Tanvi", place: "Chennai", image: "/images/girl10.jpg" },
-  { name: "Aditya", place: "Bengaluru", image: "/images/boy12.jpg" },
+  { name: "Aditya", place: "Bengaluru", image: "/images/boy2.jpg" },
   { name: "Suryateja", place: "Warangal", image: "/images/boy1.jpg" },
   { name: "Jayaram", place: "Vijayawada", image: "/images/girl1.jpg" },
   { name: "Rakesh", place: "Hyderabad", image: "/images/boy9.jpg" },
@@ -17,7 +17,7 @@ const recentDownloads = [
   { name: "Divya", place: "Nizamabad", image: "/images/girl2.jpg" },
   { name: "Karthik", place: "Nalgonda", image: "/images/boy8.jpg" },
   { name: "Bhavana", place: "Karimnagar", image: "/images/girl6.jpg" },
-  { name: "Naveen", place: "Guntur", image: "/images/boy11.jpg" },
+  { name: "Naveen", place: "Guntur", image: "/images/boy1.jpg" },
   { name: "Meghana", place: "Warangal", image: "/images/girl3.jpg" },
   { name: "Tejesh", place: "Adilabad", image: "/images/boy6.jpg" },
   { name: "Anirudh", place: "Siddipet", image: "/images/boy7.jpg" },
