@@ -14,7 +14,6 @@ interface RazorpayCheckoutButtonProps {
   hideButton?: boolean; // If true, hides the default button
   email: string;
   phone: string;
-  studioName: string;
   city: string;
 }
 
@@ -23,7 +22,7 @@ interface RazorpayCheckoutButtonProps {
  * Handles payment processing through Razorpay gateway
  * Creates orders on backend and opens Razorpay checkout modal
  */
-export default function RazorpayCheckoutButton({ amount, assetId, title, email, phone, studioName, city, onPaymentSuccess, triggerPayment, onTriggerHandled, hideButton }: RazorpayCheckoutButtonProps) {
+export default function RazorpayCheckoutButton({ amount, assetId, title, email, phone, city, onPaymentSuccess, triggerPayment, onTriggerHandled, hideButton }: RazorpayCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   /**
@@ -43,7 +42,6 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, email, 
           title,
           email,
           phone,
-          studioName,
           city,
         }),
       });
@@ -62,7 +60,7 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, email, 
           if (onPaymentSuccess) onPaymentSuccess();
         },
         prefill: {
-          name: studioName,
+          name: '', // Removed studioName
           email: email,
           contact: phone,
         },

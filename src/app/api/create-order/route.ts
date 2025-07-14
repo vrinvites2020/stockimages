@@ -17,13 +17,13 @@ const razorpay = new Razorpay({
  */
 export async function POST(req: NextRequest) {
   try {
-    const { amount, assetId, title, email, phone, studioName, city } = await req.json();
+    const { amount, assetId, title, email, phone, city } = await req.json();
 
     const options = {
       amount: amount * 100, // Convert to paise
       currency: 'INR',
       receipt: `receipt_${Date.now()}`,
-      notes: { assetId, title, email, phone, studioName, city },
+      notes: { assetId, title, email, phone, city },
       payment_capture: 1,
     };
 

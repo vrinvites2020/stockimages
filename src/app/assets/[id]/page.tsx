@@ -64,7 +64,6 @@ export default function AssetDetailPage({
   const [triggerPayment, setTriggerPayment] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [studioName, setStudioName] = useState("");
   const [city, setCity] = useState("");
   const [formError, setFormError] = useState("");
 
@@ -230,14 +229,6 @@ export default function AssetDetailPage({
                     <input
                       type="text"
                       className="px-4 py-2 rounded-lg text-black"
-                      placeholder="Studio Name*"
-                      value={studioName}
-                      onChange={e => setStudioName(e.target.value)}
-                      required
-                    />
-                    <input
-                      type="text"
-                      className="px-4 py-2 rounded-lg text-black"
                       placeholder="City*"
                       value={city}
                       onChange={e => setCity(e.target.value)}
@@ -251,7 +242,6 @@ export default function AssetDetailPage({
                     title={details.title}
                     email={email}
                     phone={phone}
-                    studioName={studioName}
                     city={city}
                     onPaymentSuccess={() => {
                       setShowToast(true);
@@ -270,7 +260,7 @@ export default function AssetDetailPage({
                     className="w-full py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg hover:from-pink-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-pink-300"
                     onClick={() => {
                       // Validate fields before showing terms modal
-                      if (!email || !phone || !studioName || !city) {
+                      if (!email || !phone || !city) {
                         setFormError("All fields are required.");
                         return;
                       }
