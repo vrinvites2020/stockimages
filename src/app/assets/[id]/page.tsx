@@ -62,6 +62,11 @@ export default function AssetDetailPage({
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const [triggerPayment, setTriggerPayment] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [studioName, setStudioName] = useState("");
+  const [city, setCity] = useState("");
+  const [formError, setFormError] = useState("");
 
   if (!details) {
     notFound();
@@ -198,10 +203,56 @@ export default function AssetDetailPage({
                       ₹{details.price.toLocaleString("en-IN")}
                     </span>
                   </div>
+                  {/* User Details Form */}
+                  <div className="w-full flex flex-col gap-2 mb-4">
+                    <div className="flex items-center mb-1 text-xs text-blue-300">
+                      <span className="mr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="inline w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+                      </span>
+                      We use this info for a ₹1,00,000 giveaway.
+                    </div>
+                    <input
+                      type="email"
+                      className="px-4 py-2 rounded-lg text-black"
+                      placeholder="Email*"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="tel"
+                      className="px-4 py-2 rounded-lg text-black"
+                      placeholder="Phone*"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="text"
+                      className="px-4 py-2 rounded-lg text-black"
+                      placeholder="Studio Name*"
+                      value={studioName}
+                      onChange={e => setStudioName(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="text"
+                      className="px-4 py-2 rounded-lg text-black"
+                      placeholder="City*"
+                      value={city}
+                      onChange={e => setCity(e.target.value)}
+                      required
+                    />
+                    {formError && <div className="text-red-400 text-sm">{formError}</div>}
+                  </div>
                   <RazorpayCheckoutButton
                     amount={details.price}
                     assetId={details.id.toString()}
                     title={details.title}
+                    email={email}
+                    phone={phone}
+                    studioName={studioName}
+                    city={city}
                     onPaymentSuccess={() => {
                       setShowToast(true);
                       if (downloadRef.current) {
@@ -217,7 +268,24 @@ export default function AssetDetailPage({
                   />
                   <button
                     className="w-full py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg hover:from-pink-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-pink-300"
-                    onClick={() => setShowTermsModal(true)}
+                    onClick={() => {
+                      // Validate fields before showing terms modal
+                      if (!email || !phone || !studioName || !city) {
+                        setFormError("All fields are required.");
+                        return;
+                      }
+                      // Basic email and phone validation
+                      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                        setFormError("Please enter a valid email address.");
+                        return;
+                      }
+                      if (!/^\d{10}$/.test(phone)) {
+                        setFormError("Please enter a valid 10-digit phone number.");
+                        return;
+                      }
+                      setFormError("");
+                      setShowTermsModal(true);
+                    }}
                   >
                     Buy Now
                   </button>

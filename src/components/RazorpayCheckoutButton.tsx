@@ -12,6 +12,10 @@ interface RazorpayCheckoutButtonProps {
   triggerPayment?: boolean; // If true, triggers payment programmatically
   onTriggerHandled?: () => void; // Called after payment is triggered
   hideButton?: boolean; // If true, hides the default button
+  email: string;
+  phone: string;
+  studioName: string;
+  city: string;
 }
 
 /**
@@ -19,7 +23,7 @@ interface RazorpayCheckoutButtonProps {
  * Handles payment processing through Razorpay gateway
  * Creates orders on backend and opens Razorpay checkout modal
  */
-export default function RazorpayCheckoutButton({ amount, assetId, title, onPaymentSuccess, triggerPayment, onTriggerHandled, hideButton }: RazorpayCheckoutButtonProps) {
+export default function RazorpayCheckoutButton({ amount, assetId, title, email, phone, studioName, city, onPaymentSuccess, triggerPayment, onTriggerHandled, hideButton }: RazorpayCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   /**
@@ -37,6 +41,10 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, onPayme
           amount, // in rupees
           assetId,
           title,
+          email,
+          phone,
+          studioName,
+          city,
         }),
       });
       const data = await res.json();
@@ -54,8 +62,9 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, onPayme
           if (onPaymentSuccess) onPaymentSuccess();
         },
         prefill: {
-          name: 'User Name',
-          email: 'user@example.com',
+          name: studioName,
+          email: email,
+          contact: phone,
         },
         theme: { color: '#2563EB' },
       };
