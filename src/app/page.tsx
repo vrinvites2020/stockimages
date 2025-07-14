@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import RecentDownloads from "@/components/RecentDownloads";
 import FinalBanner from "@/components/FinalBanner";
 import FixedContact from "@/components/FixedContact";
-import GiveawayPopup from "@/components/GiveawayPopup";
+import GiveawayPopupWithCooldown from "@/components/GiveawayPopupWithCooldown";
 
 /**
  * Asset type definition for the main page
@@ -55,7 +55,6 @@ export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
   const hasMounted = useHasMounted();
   // const { isModalOpen, closeModal } = useUserFormModal();
-  const [showGiveawayPopup, setShowGiveawayPopup] = useState(true);
 
   /**
    * Handles category selection from carousel or tabs
@@ -72,7 +71,7 @@ export default function Home() {
   return (
     <>
       {/* Giveaway Popup */}
-      <GiveawayPopup open={showGiveawayPopup} onClose={() => setShowGiveawayPopup(false)} />
+      <GiveawayPopupWithCooldown cooldownHours={6} />
         
       <div className="min-h-screen">
         {/* Hero Section */}

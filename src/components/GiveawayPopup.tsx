@@ -1,3 +1,5 @@
+// PRESENTATIONAL ONLY: Use GiveawayPopupWithCooldown for cooldown/localStorage logic.
+// This component just renders the popup UI.
 import Image from "next/image";
 import { X } from "lucide-react";
 
