@@ -5,7 +5,7 @@ import { weddingInvitationDetails } from "@/data/constant";
 import RazorpayCheckoutButton from "@/components/RazorpayCheckoutButton";
 import { notFound } from "next/navigation";
 import { useState, useRef, use } from "react";
-import { Play, Pause, ArrowLeft, Heart } from "lucide-react";
+import { Play, ArrowLeft, Heart } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 import FixedContact from "@/components/FixedContact";
@@ -13,8 +13,9 @@ import PurchaseTermsModal from "@/components/PurchaseTermsModal";
 
 // Utility function to convert any YouTube URL to an embed URL with highest available quality
 function getYouTubeEmbedUrl(url: string): string {
-  const baseParams = "enablejsapi=1&vq=hd2160&rel=0&modestbranding=1&showinfo=0";
-  
+  const baseParams =
+    "enablejsapi=1&vq=hd2160&rel=0&modestbranding=1&showinfo=0";
+
   // Handle youtu.be short links
   const shortMatch = url.match(/^https?:\/\/youtu\.be\/([^?&]+)/);
   if (shortMatch) {
@@ -71,26 +72,10 @@ export default function AssetDetailPage({
     notFound();
   }
 
-  /**
-   * Toggles video play/pause state
-   * Sends commands to YouTube iframe API for video control
-   */
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.contentWindow?.postMessage(
-          '{"event":"command","func":"pauseVideo","args":""}',
-          "*"
-        );
-      } else {
-        videoRef.current.contentWindow?.postMessage(
-          '{"event":"command","func":"playVideo","args":""}',
-          "*"
-        );
-      }
-      setIsPlaying(!isPlaying);
-    }
+    if (!isPlaying) setIsPlaying(true);
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#18122B] via-[#1E1B3A] to-[#232946] text-white">
@@ -135,45 +120,40 @@ export default function AssetDetailPage({
         <div className="flex flex-col lg:flex-row gap-8 items-stretch justify-center">
           {/* Left Column - Media */}
           <div className="w-full lg:w-2/3 flex-shrink-0">
-            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 overflow-hidden relative group h-full flex flex-col justify-center">
+            <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 overflow-hidden relative group">
               {details.imageUrl && details.videoUrl && (
-                <div className="relative aspect-video group cursor-pointer">
-                  <Image
-                    src={details.imageUrl}
-                    alt={details.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl"
-                    priority
-                  />
-                  {/* Gradient overlay for readability and animated overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl pointer-events-none transition-all duration-500 group-hover:from-pink-500/40 group-hover:via-indigo-500/10 group-hover:to-transparent" />
-                  <iframe
-                    ref={videoRef}
-                    src={getYouTubeEmbedUrl(details.videoUrl)}
-                    className="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300 rounded-2xl"
-                    style={{ opacity: isPlaying ? 1 : 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                  <button
-                    onClick={togglePlay}
-                    className={clsx(
-                      "absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 focus:outline-none",
-                      isPlaying
-                        ? "opacity-0 group-hover:opacity-100"
-                        : "opacity-100"
-                    )}
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                    tabIndex={0}
-                  >
-                    <span className="">
-                      {isPlaying ? (
-                        <Pause className="w-10 h-10 text-white drop-shadow-lg" />
-                      ) : (
-                        <Play className="w-10 h-10 text-white drop-shadow-lg" />
-                      )}
-                    </span>
-                  </button>
+                <div className="relative w-full aspect-video group">
+                  {/* Show image + button before play */}
+                  {!isPlaying ? (
+                    <>
+                      <Image
+                        src={details.imageUrl}
+                        alt={details.title}
+                        fill
+                        className="object-cover rounded-2xl z-0"
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
+                        <button
+                          onClick={togglePlay}
+                          className="w-16 h-16 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition"
+                          aria-label="Play video"
+                        >
+                          <Play className="w-10 h-10 text-white" />
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <iframe
+                      ref={videoRef}
+                      src={`${getYouTubeEmbedUrl(
+                        details.videoUrl
+                      )}&autoplay=1&controls=1&playsinline=1&modestbranding=1&rel=0&vq=hd1080`}
+                      className="absolute inset-0 w-full h-full rounded-2xl"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  )}
                 </div>
               )}
             </div>
@@ -206,7 +186,31 @@ export default function AssetDetailPage({
                   <div className="w-full flex flex-col gap-2 mb-4">
                     <div className="flex items-center mb-1 text-xs text-blue-300">
                       <span className="mr-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="inline w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            fill="none"
+                          />
+                          <line
+                            x1="12"
+                            y1="8"
+                            x2="12"
+                            y2="12"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          />
+                          <circle cx="12" cy="16" r="1" fill="currentColor" />
+                        </svg>
                       </span>
                       We use this info for a ₹1,00,000 giveaway.
                     </div>
@@ -215,7 +219,7 @@ export default function AssetDetailPage({
                       className="px-4 py-2 rounded-lg text-black"
                       placeholder="Email*"
                       value={email}
-                      onChange={e => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                     <input
@@ -223,7 +227,7 @@ export default function AssetDetailPage({
                       className="px-4 py-2 rounded-lg text-black"
                       placeholder="Phone*"
                       value={phone}
-                      onChange={e => setPhone(e.target.value)}
+                      onChange={(e) => setPhone(e.target.value)}
                       required
                     />
                     <input
@@ -231,10 +235,12 @@ export default function AssetDetailPage({
                       className="px-4 py-2 rounded-lg text-black"
                       placeholder="City*"
                       value={city}
-                      onChange={e => setCity(e.target.value)}
+                      onChange={(e) => setCity(e.target.value)}
                       required
                     />
-                    {formError && <div className="text-red-400 text-sm">{formError}</div>}
+                    {formError && (
+                      <div className="text-red-400 text-sm">{formError}</div>
+                    )}
                   </div>
                   <RazorpayCheckoutButton
                     amount={details.price}
@@ -270,7 +276,9 @@ export default function AssetDetailPage({
                         return;
                       }
                       if (!/^\d{10}$/.test(phone)) {
-                        setFormError("Please enter a valid 10-digit phone number.");
+                        setFormError(
+                          "Please enter a valid 10-digit phone number."
+                        );
                         return;
                       }
                       setFormError("");
@@ -302,47 +310,64 @@ export default function AssetDetailPage({
               {/* Base features - common for all projects */}
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Complete Pre Rendered Elements</span>
+                <span className="text-white text-base">
+                  Complete Pre Rendered Elements
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Video Help File Included</span>
+                <span className="text-white text-base">
+                  Video Help File Included
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Works in Adobe Premiere Pro CC 2015 and Above</span>
+                <span className="text-white text-base">
+                  Works in Adobe Premiere Pro CC 2015 and Above
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Video Orientation is Vertical</span>
+                <span className="text-white text-base">
+                  Video Orientation is Vertical
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Well Organized and Easy to Use</span>
+                <span className="text-white text-base">
+                  Well Organized and Easy to Use
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">No Plugins Required</span>
+                <span className="text-white text-base">
+                  No Plugins Required
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Very Easy to Customize</span>
+                <span className="text-white text-base">
+                  Very Easy to Customize
+                </span>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg">
                 <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                <span className="text-white text-base">Placeholders Formats - PSD, JPG, PNG</span>
+                <span className="text-white text-base">
+                  Placeholders Formats - PSD, JPG, PNG
+                </span>
               </div>
-              
+
               {/* Dynamic features from data */}
-              {details.features && details.features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg"
-                >
-                  <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
-                  <span className="text-white text-base">{feature}</span>
-                </div>
-              ))}
+              {details.features &&
+                details.features.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 rounded-lg shadow-lg"
+                  >
+                    <div className="w-2 h-2 rounded-full bg-pink-400 mt-2"></div>
+                    <span className="text-white text-base">{feature}</span>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
