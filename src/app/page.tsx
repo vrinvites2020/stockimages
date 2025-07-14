@@ -10,8 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import RecentDownloads from "@/components/RecentDownloads";
 import FinalBanner from "@/components/FinalBanner";
 import FixedContact from "@/components/FixedContact";
-import UserForm from "@/components/UserFormModal";
-import { useUserFormModal } from "@/hooks/useUserFormModal";
+import GiveawayPopup from "@/components/GiveawayPopup";
 
 /**
  * Asset type definition for the main page
@@ -55,7 +54,8 @@ function useHasMounted() {
 export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
   const hasMounted = useHasMounted();
-  const { isModalOpen, closeModal } = useUserFormModal();
+  // const { isModalOpen, closeModal } = useUserFormModal();
+  const [showGiveawayPopup, setShowGiveawayPopup] = useState(true);
 
   /**
    * Handles category selection from carousel or tabs
@@ -71,6 +71,9 @@ export default function Home() {
 
   return (
     <>
+      {/* Giveaway Popup */}
+      <GiveawayPopup open={showGiveawayPopup} onClose={() => setShowGiveawayPopup(false)} />
+        
       <div className="min-h-screen">
         {/* Hero Section */}
         <HeroSection
@@ -149,7 +152,8 @@ export default function Home() {
         <FixedContact />
       </div>
 
-      {/* User Form Modal */}
+      {/* User Form Modal (disabled, kept for reference) */}
+      {/*
       <UserForm 
         isModal={true}
         isOpen={isModalOpen} 
@@ -158,6 +162,7 @@ export default function Home() {
           console.log('User form submitted successfully');
         }}
       />
+      */}
     </>
   );
 }
