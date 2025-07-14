@@ -18,9 +18,9 @@ export default function GiveawayPopup({ open, onClose }: GiveawayPopupProps) {
           onClick={onClose}
           aria-label="Close giveaway popup"
         >
-          <X className="w-7 h-7" />
+          <X className="w-6 h-6" />
         </button>
-        <div className="w-[90vw] max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] flex items-center justify-center">
+        <div className="w-[90vw] max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[1000px] flex items-center justify-center">
           <Image
             src="/images/Giveaway_Popup.jpg"
             alt="Giveaway Popup"

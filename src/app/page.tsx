@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import RecentDownloads from "@/components/RecentDownloads";
 import FinalBanner from "@/components/FinalBanner";
 import FixedContact from "@/components/FixedContact";
-import GiveawayPopupWithCooldown from "@/components/GiveawayPopupWithCooldown";
+import GiveawayPopupWithCooldown from "@/components/GiveawayPopupmodal";
 
 /**
  * Asset type definition for the main page
@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <>
       {/* Giveaway Popup */}
-      <GiveawayPopupWithCooldown cooldownHours={6} />
+      <GiveawayPopupWithCooldown />
         
       <div className="min-h-screen">
         {/* Hero Section */}
