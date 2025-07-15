@@ -162,6 +162,11 @@ export default function Home() {
         }}
       />
       */}
+
+      {/* Footer */}
+      <footer className="w-full text-center py-4 text-sm text-blue-200 bg-gradient-to-b from-[#0d0820] to-[#1a1530]">
+        Powered by <span className="font-bold text-pink-400">@Nexzap</span>
+      </footer>
     </>
   );
 }

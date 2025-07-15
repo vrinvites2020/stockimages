@@ -162,28 +162,24 @@ export default function AssetDetailPage({
           {/* Right Column - Details */}
           <div className="w-full lg:w-1/3 flex flex-col justify-center">
             <div className="bg-gradient-to-br from-[#232946] via-[#1E1B3A] to-[#18122B] rounded-2xl shadow-2xl border border-purple-900/40 p-8 flex flex-col items-center text-center gap-6 h-full justify-center">
-              <h1 className="text-3xl font-extrabold mb-2 text-white leading-tight drop-shadow-lg">
+              <h1 className="text-3xl font-extrabold text-white leading-tight drop-shadow-lg">
                 {details.title}
               </h1>
-              <div className="flex flex-wrap font-bold items-center justify-center gap-3 mb-2">
+              <div className="flex flex-wrap font-bold items-center justify-center gap-3">
                 <p>
                   Every Purchase Inspires us to create more and share even
                   better projects with you
                 </p>
-                <p>
-                  Your support means everything, thank you for being part of our
-                  journey
-                </p>
               </div>
               {details.price && (
-                <div className="mb-2 w-full flex flex-col items-center">
+                <div className="w-full flex flex-col items-center">
                   <div className="flex items-center justify-center mb-4 w-full">
                     <span className="text-4xl font-bold text-white drop-shadow">
                       ₹{details.price.toLocaleString("en-IN")}
                     </span>
                   </div>
                   {/* User Details Form */}
-                  <div className="w-full flex flex-col gap-2 mb-4">
+                  <div className="w-full max-w-[600px] flex flex-col gap-2 mb-4">
                     <div className="flex items-center mb-1 text-xs text-blue-300">
                       <span className="mr-1">
                         <svg
@@ -263,7 +259,7 @@ export default function AssetDetailPage({
                     hideButton
                   />
                   <button
-                    className="w-full py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg hover:from-pink-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-pink-300"
+                    className="w-full max-w-[600px] py-2 rounded-lg font-bold transition-colors text-white bg-gradient-to-r from-pink-500 to-indigo-500 shadow-lg hover:from-pink-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-pink-300"
                     onClick={() => {
                       // Validate fields before showing terms modal
                       if (!email || !phone || !city) {
@@ -411,6 +407,11 @@ export default function AssetDetailPage({
 
       {/* Fixed Contact Card with Icons */}
       <FixedContact />
+
+      {/* Footer */}
+      <footer className="w-full text-center py-4 text-sm text-blue-200">
+        Powered by <span className="font-bold text-pink-400">@Nexzap</span>
+      </footer>
     </div>
   );
 }
