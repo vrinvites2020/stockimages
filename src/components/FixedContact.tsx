@@ -10,7 +10,7 @@ import { faWhatsapp, faTelegram, faYoutube } from '@fortawesome/free-brands-svg-
 const FixedContact = () => {
   return (<>
          {/* Fixed Contact Card with Icons */}
-         <div className="fixed bottom-4 right-4 z-50 flex flex-col items-center p-4 rounded-lg shadow-lg bg-gray-800 bg-opacity-75 md:bottom-8 md:right-8">
+         <div className="fixed bottom-16 right-4 z-50 flex flex-col items-center p-4 rounded-lg shadow-lg bg-gray-800 bg-opacity-75 md:bottom-8 md:right-8">
          <p className="text-white text-sm font-medium drop-shadow mb-2">For more details contact</p>
          <div className="flex space-x-4">
            <a href="https://whatsapp.com/channel/0029Vb5pUGIEwEjtvpcKZD0U" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-110">
