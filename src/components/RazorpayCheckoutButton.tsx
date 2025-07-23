@@ -49,8 +49,7 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, email, 
 
       // 2. Open Razorpay checkout
       const options = {
-        // Store your Razorpay key in .env.local as NEXT_PUBLIC_RAZORPAY_KEY
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
+        key: process.env.RAZORPAY_KEY as string,
         amount: data.amount, // in paise
         currency: data.currency,
         name: 'VR Visual Magics',

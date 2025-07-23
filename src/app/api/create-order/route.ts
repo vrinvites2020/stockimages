@@ -6,8 +6,8 @@ import { NextRequest, NextResponse } from 'next/server';
  * Uses environment variables for API credentials
  */
 const razorpay = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
-    key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET as string,
+    key_id: process.env.RAZORPAY_KEY as string,
+    key_secret: process.env.RAZORPAY_SECRET as string,
 });
 
 /**

@@ -151,17 +151,6 @@ export default function Home() {
         <FixedContact />
       </div>
 
-      {/* User Form Modal (disabled, kept for reference) */}
-      {/*
-      <UserForm 
-        isModal={true}
-        isOpen={isModalOpen} 
-        onClose={closeModal}
-        onSuccess={() => {
-          console.log('User form submitted successfully');
-        }}
-      />
-      */}
 
       {/* Footer */}
       <footer className="w-full text-center py-4 text-sm text-blue-200 bg-gradient-to-b from-[#0d0820] to-[#1a1530]">
