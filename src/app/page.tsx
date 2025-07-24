@@ -53,8 +53,12 @@ function useHasMounted() {
  */
 export default function Home() {
   const [filteredAssets, setFilteredAssets] = useState<Asset[]>(assets);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
   const hasMounted = useHasMounted();
   // const { isModalOpen, closeModal } = useUserFormModal();
+
+  const totalPages = Math.ceil(filteredAssets.length / ITEMS_PER_PAGE);
 
   /**
    * Handles category selection from carousel or tabs
@@ -66,6 +70,18 @@ export default function Home() {
         ? assets
         : assets.filter((asset) => asset.category === category);
     setFilteredAssets(filtered);
+    setCurrentPage(1); // Reset to first page on filter change
+  };
+
+  const getPaginatedAssets = () => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return filteredAssets.slice(startIndex, endIndex);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setCurrentPage(newPage);
   };
 
   return (
@@ -87,20 +103,47 @@ export default function Home() {
         >
           <div className="max-w-[1600px] mx-auto">
             {filteredAssets.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredAssets.map((asset) => (
-                  <div key={asset.id} className="animate-fade-in w-full">
-                    <AssetCard
-                      id={asset.id}
-                      title={asset.title}
-                      category={asset.category}
-                      language={asset.language}
-                      price={asset.price}
-                      imageUrl={asset.imageUrl}
-                    />
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {getPaginatedAssets().map((asset) => (
+                    <div key={asset.id} className="animate-fade-in w-full">
+                      <AssetCard
+                        id={asset.id}
+                        title={asset.title}
+                        category={asset.category}
+                        language={asset.language}
+                        price={asset.price}
+                        imageUrl={asset.imageUrl}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2 mt-6">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Previous
+                    </button>
+                    
+                    <span className="px-4 py-2 text-purple-300">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Next
+                    </button>
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             ) : (
               hasMounted && (
                 <AnimatePresence>
