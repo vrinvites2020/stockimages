@@ -49,7 +49,7 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, email, 
 
       // 2. Open Razorpay checkout
       const options = {
-        key: process.env.RAZORPAY_KEY as string,
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY as string,
         amount: data.amount, // in paise
         currency: data.currency,
         name: 'VR Visual Magics',
@@ -59,7 +59,6 @@ export default function RazorpayCheckoutButton({ amount, assetId, title, email, 
           if (onPaymentSuccess) onPaymentSuccess();
         },
         prefill: {
-          name: '', // Removed studioName
           email: email,
           contact: phone,
         },
