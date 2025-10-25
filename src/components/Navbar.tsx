@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-// import {
-//   UserButton,
-//   SignInButton,
-//   SignedIn,
-//   SignedOut
-// } from "@clerk/nextjs";
+import {
+  UserButton,
+  SignInButton,
+  SignedIn,
+  SignedOut
+} from "@clerk/nextjs";
 import { PhoneIcon } from "lucide-react";
 
 /**
@@ -38,14 +38,14 @@ const Navbar = () => {
           </div>
 
           {/* Clerk Auth Buttons */}
-          {/* <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <SignedIn>
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
               <SignInButton />
             </SignedOut>
-          </div> */}
+          </div>
         </div>
       </div>
     </nav>
