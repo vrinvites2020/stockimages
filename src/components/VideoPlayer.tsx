@@ -55,6 +55,14 @@ const VideoPlayer = () => {
             muted
             loop
             preload="auto"
+            controls={false}
+            controlsList="nodownload noplaybackrate nofullscreen"
+            disablePictureInPicture
+            disableRemotePlayback
+            draggable={false}
+            aria-hidden="true"
+            tabIndex={-1}
+            onContextMenu={(event) => event.preventDefault()}
           />
         </div>
 
@@ -67,6 +75,14 @@ const VideoPlayer = () => {
             muted
             loop
             preload="auto"
+            controls={false}
+            controlsList="nodownload noplaybackrate nofullscreen"
+            disablePictureInPicture
+            disableRemotePlayback
+            draggable={false}
+            aria-hidden="true"
+            tabIndex={-1}
+            onContextMenu={(event) => event.preventDefault()}
           />
         </div>
       </div>

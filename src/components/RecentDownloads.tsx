@@ -7,28 +7,28 @@ import { motion } from "framer-motion";
  * Contains user information with names, locations, and profile images
  */
 const recentDownloads = [
-  { name: "Tanvi", place: "Chennai", image: "/images/girl10.jpg" },
-  { name: "Aditya", place: "Bengaluru", image: "/images/boy2.jpg" },
-  { name: "Suryateja", place: "Warangal", image: "/images/boy1.jpg" },
-  { name: "Jayaram", place: "Vijayawada", image: "/images/girl1.jpg" },
-  { name: "Rakesh", place: "Hyderabad", image: "/images/boy9.jpg" },
-  { name: "Niharika", place: "Mumbai", image: "/images/girl8.jpg" },
+  { name: "Pavan", place: "Vijayawada", image: "/images/boy10.jpg" },
+  { name: "Vineeth", place: "Tirupati", image: "/images/boy2.jpg" },
+  { name: "Suraj", place: "Visakhapatnam", image: "/images/boy1.jpg" },
+  { name: "Pramod", place: "Hyderabad", image: "/images/boy3.jpg" },
+  { name: "Vinay", place: "Guntur", image: "/images/boy9.jpg" },
+  { name: "Niharika", place: "Warangal", image: "/images/girl8.jpg" },
   { name: "Yashwanth", place: "Khammam", image: "/images/boy4.jpg" },
   { name: "Divya", place: "Nizamabad", image: "/images/girl2.jpg" },
   { name: "Karthik", place: "Nalgonda", image: "/images/boy8.jpg" },
   { name: "Bhavana", place: "Karimnagar", image: "/images/girl6.jpg" },
-  { name: "Naveen", place: "Guntur", image: "/images/boy1.jpg" },
-  { name: "Meghana", place: "Warangal", image: "/images/girl3.jpg" },
+  { name: "Naveen", place: "Rajahmundry", image: "/images/boy1.jpg" },
+  { name: "Meghana", place: "Kurnool", image: "/images/girl3.jpg" },
   { name: "Tejesh", place: "Adilabad", image: "/images/boy6.jpg" },
   { name: "Anirudh", place: "Siddipet", image: "/images/boy7.jpg" },
-  { name: "Harshita", place: "Hyderabad", image: "/images/girl5.jpg" },
-  { name: "Manohar", place: "Nizamabad", image: "/images/boy3.jpg" },
-  { name: "Rithvik", place: "Karimnagar", image: "/images/boy2.jpg" },
-  { name: "Sravya", place: "Khammam", image: "/images/girl4.jpg" },
-  { name: "Anusha", place: "Rajahmundry", image: "/images/girl7.jpg" },
-  { name: "Vishnu", place: "Vijayawada", image: "/images/boy10.jpg" },
-  { name: "Ishita", place: "Delhi", image: "/images/girl9.jpg" },
-  { name: "Sai Kiran", place: "Mahbubnagar", image: "/images/boy5.jpg" },
+  { name: "Harshita", place: "Nellore", image: "/images/girl5.jpg" },
+  { name: "Manohar", place: "Ongole", image: "/images/boy3.jpg" },
+  { name: "Rithvik", place: "Mahbubnagar", image: "/images/boy2.jpg" },
+  { name: "Sravya", place: "Srikakulam", image: "/images/girl4.jpg" },
+  { name: "Anusha", place: "Eluru", image: "/images/girl7.jpg" },
+  { name: "Vishnu", place: "Kadapa", image: "/images/boy10.jpg" },
+  { name: "Ishita", place: "Bengaluru", image: "/images/girl9.jpg" },
+  { name: "Sai Kiran", place: "Mumbai", image: "/images/boy5.jpg" },
 ];
 
 /**
@@ -56,8 +56,8 @@ export default function RecentDownloads() {
     updateTrackWidth();
     const resizeObserver = new ResizeObserver(updateTrackWidth);
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    if (originalSetRef.current) {
+      resizeObserver.observe(originalSetRef.current);
     }
 
     return () => {
@@ -103,7 +103,7 @@ export default function RecentDownloads() {
 
           <div className="flex gap-8 overflow-x-hidden carousel-container w-full">
             <motion.div
-              className="carousel-track flex"
+              className="carousel-track flex w-max"
               style={{ width: trackWidth ? `${trackWidth * 2}px` : "auto" }}
               animate={{
                 x: [0, -trackWidth],
@@ -115,7 +115,7 @@ export default function RecentDownloads() {
               }}
             >
               {/* First set */}
-              <div className="flex gap-8" ref={originalSetRef}>
+              <div className="flex w-max shrink-0 gap-8" ref={originalSetRef}>
                 {recentDownloads.map((download, idx) => (
                   <motion.div
                     key={`${download.name}-${idx}`}
@@ -147,7 +147,7 @@ export default function RecentDownloads() {
               </div>
 
               {/* Second set for seamless loop */}
-              <div className="flex gap-8">
+              <div className="flex w-max shrink-0 gap-8">
                 {recentDownloads.map((download, idx) => (
                   <div
                     key={`${download.name}-dup-${idx}`}
